@@ -3,7 +3,8 @@ const config = require("config");
 const bodyParser = require('body-parser')
 
 const mongoose = require("mongoose");
-const res = require("express/lib/response");
+const res = require("express/lib/response")
+const bcrypte = require("bcryptjs")
 
 
 exports.getUsers = async (req, res) => {
@@ -67,7 +68,10 @@ exports.createUser = async (req, res) => {
             role,
             password,
             salaire,
-        })
+        });
+        let salt = await bcrypte.genSalt(10);
+        let hash = await bcrypte.hashSync(password,salt);
+        new_user.password=hash;
         await new_user.save();
         res.send("save effectué avec succes!")
     }
