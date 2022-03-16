@@ -6,105 +6,173 @@ import { Link } from 'react-router-dom';
 
 function profile() {
   return (
-   
-  <div class="container">
-  <div class="main-body">
-  
-       
+
+    <div class="container">
+      <div class="main-body">
+
+
         <nav aria-label="breadcrumb" class="main-breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><Link to="index.html">Home</Link></li>
-            <li class="breadcrumb-item"><Link to="javascript:void(0)">User</Link></li>
-            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            <li class="breadcrumb-item active" aria-current="page">
+              <i class="bi bi-person-fill" style={{ fontSize: "3rem", color: "black" }}></i>
+              <p> Profil</p>
+              </li>
+            <li class="breadcrumb-item"><Link to="javascript:void(0)">
+              <i class="bi bi-calendar-heart" style={{ fontSize: "3rem", color: "black" }}></i>
+              <p style={{  color: "black" }}>Congé</p>
+              </Link>
+              </li>
+            <li class="breadcrumb-item "><Link to="index.html">
+              <i class="bi bi-calendar2-check" style={{ fontSize: "3rem", color: "black" }}></i>
+              <p style={{  color: "black" }}>Pointage</p>
+              </Link>
+              </li>
+            <li class="breadcrumb-item"><Link to="index.html">
+              <i class="bi bi-card-heading" style={{ fontSize: "3rem", color: "black" }}></i>
+              <p style={{  color: "black" }}>Fiche de paie</p>
+              </Link>
+              </li>
           </ol>
         </nav>
-        
-  
-        <div class="row gutters-sm">
-          <div class="col-md-4 mb-3">
+
+
+        <div class="column gutters-sm">
+          <div class="col-md-13 mb-3">
             <div class="card">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"/>
-                  <div class="mt-3">
-                    <h4>John Doe</h4>
-                    <p class="text-secondary mb-1">Full Stack Developer</p>
-                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                    <button class="btn btn-primary">Follow</button>
-                    <button class="btn btn-outline-primary">Message</button>
-                  </div>
+                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150" />
+
                 </div>
               </div>
             </div>
-           
+
           </div>
-          
+
+          <div class="column">
             <div class="card mb-2">
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-3">
-                    <h6 class="mb-0">Full Name</h6>
+                    <h6 class="mb-0">Nom</h6>
+                  </div>
+                 <div class="col-sm-9 text-secondary">
+									<input type="text" class="form-control" value="John Doe"/>
+								</div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Prénom</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    Kenneth Valdez
+                    <input type="text" class="form-control" value="John Doe"/>
                   </div>
                 </div>
-                <hr/>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6 class="mb-0">Télephone</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" value="John Doe"/>
+                  </div>
+                </div>
+                <hr />
                 <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Email</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    fip@jukmuh.al
+                    <input type="text" class="form-control" value="John Doe"/>
                   </div>
                 </div>
-                <hr/>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Phone</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    (239) 816-9029
-                  </div>
-                </div>
-                <hr/>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Mobile</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    (320) 380-4539
-                  </div>
-                </div>
-                <hr/>
+                <hr />
                 <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Address</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
-                    Bay Area, San Francisco, CA
+                   <input type="text" class="form-control" value="John Doe"/>
                   </div>
                 </div>
-                <hr/>
+                <hr />
+               
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Département</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value="John Doe"/>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Contart</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     <input type="text" class="form-control" value="John Doe"/>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Droit Congé</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value="John Doe"/>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Role</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    <input type="text" class="form-control" value="John Doe"/>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Mot de Passe</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value="John Doe"/>
+                    </div>
+                  </div>
+                  <hr />
+                  
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Salaire</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      <input type="text" class="form-control" value="John Doe"/>
+                    </div>
+                  </div>
+                  <hr />
                 <div class="row">
-                  <div class="col-sm-12">
-                    <Link class="btn btn-info " target="__blank" to="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</Link>
+                  <div class="col-sm-6">
+                    <Link class="btn btn-info " target="__blank" to="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Annuler</Link>
+                  </div>
+                  <div class="col-sm-6">
+                    <Link class="btn btn-info " target="__blank" to="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Ajouter</Link>
                   </div>
                 </div>
               </div>
             </div>
-
-            
-
-
-
           </div>
-        </div>
 
+
+
+
+
+        </div>
       </div>
-      
-      
-  
+
+    </div>
   );
 }
 
