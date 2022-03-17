@@ -11,28 +11,16 @@ function profile() {
       <div class="main-body">
 
 
-        <nav aria-label="breadcrumb" class="main-breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">
-              <i class="bi bi-person-fill" style={{ fontSize: "3rem", color: "black" }}></i>
-              <p> Profil</p>
-              </li>
-            <li class="breadcrumb-item"><Link to="javascript:void(0)">
-              <i class="bi bi-calendar-heart" style={{ fontSize: "3rem", color: "black" }}></i>
-              <p style={{  color: "black" }}>Congé</p>
-              </Link>
-              </li>
-            <li class="breadcrumb-item "><Link to="index.html">
-              <i class="bi bi-calendar2-check" style={{ fontSize: "3rem", color: "black" }}></i>
-              <p style={{  color: "black" }}>Pointage</p>
-              </Link>
-              </li>
-            <li class="breadcrumb-item"><Link to="index.html">
-              <i class="bi bi-card-heading" style={{ fontSize: "3rem", color: "black" }}></i>
-              <p style={{  color: "black" }}>Fiche de paie</p>
-              </Link>
-              </li>
-          </ol>
+      <nav class="nav-bar">
+      <div class="nav-bar">
+        <div className="icon">
+          <i class="bi bi-arrow-left" style={{ fontSize: "3rem", color: "black" }}></i>
+          </div>
+      
+        
+      <p class="text-center">Ajouter Utilisateur </p>
+          
+          </div>
         </nav>
 
 
@@ -52,125 +40,108 @@ function profile() {
           <div class="column">
             <div class="card mb-2">
               <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Nom</h6>
+                <div class="row ml-6">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label >Nom</label>
+                      <input type="text" class="form-control" id="phone" placeholder="Enter Nom " />
+                    </div>
                   </div>
-                 <div class="col-sm-9 text-secondary">
-									<input type="text" class="form-control" value="John Doe"/>
-								</div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Prénom</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    <input type="text" class="form-control" value="John Doe"/>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="website">Prenom</label>
+                      <input type="url" class="form-control" id="website" placeholder="Entrer prenom" />
+                    </div>
                   </div>
                 </div>
+
                 <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Télephone</h6>
+                <div class="row ml-6">
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="phone">Télephone</label>
+                      <input type="text" class="form-control" id="phone" placeholder="Entrer Num Tel" />
+                    </div>
                   </div>
-                  <div class="col-sm-9 text-secondary">
-                    <input type="text" class="form-control" value="John Doe"/>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="form-group">
+                      <label for="website">Email</label>
+                      <input type="url" class="form-control" id="website" placeholder="Entrer Adresse Email" />
+                    </div>
                   </div>
                 </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Email</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    <input type="text" class="form-control" value="John Doe"/>
-                  </div>
-                </div>
-                <hr />
-                <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Address</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                   <input type="text" class="form-control" value="John Doe"/>
+              
+              <hr />
+              < div class="row ml-6">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="phone">Adresse</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Entrer Adresse" />
                   </div>
                 </div>
-                <hr />
-               
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Département</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="John Doe"/>
-                    </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="website">Département</label>
+                    <input type="url" class="form-control" id="website" placeholder="Entrer Département" />
                   </div>
-                  <hr />
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Contart</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                     <input type="text" class="form-control" value="John Doe"/>
-                    </div>
+                </div>
+
+              </div>
+              <hr />
+              < div class="row ml-6">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="phone">Contart</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Entrer Contrat " />
                   </div>
-                  <hr />
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Droit Congé</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="John Doe"/>
-                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="website">Droit Cnogé</label>
+                    <input type="url" class="form-control" id="website" placeholder="Enter Droit Congé" />
                   </div>
-                  <hr />
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Role</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                    <input type="text" class="form-control" value="John Doe"/>
-                    </div>
+                </div>
+
+              </div>
+              <hr />
+              <div class="row ml-6">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="phone">Role</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Entrer Role" />
                   </div>
-                  <hr />
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Mot de Passe</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="John Doe"/>
-                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                  <div class="form-group">
+                    <label for="website">Mot de passe</label>
+                    <input type="url" class="form-control" id="website" placeholder="Entrer Mot de passe" />
                   </div>
-                  <hr />
+                </div>
+              </div>
+
+              <hr />
+
+              <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                   
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Salaire</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="John Doe"/>
-                    </div>
+                    <label >Salaire</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Entrer montant salaire" />
                   </div>
-                  <hr />
-                <div class="row">
-                  <div class="col-sm-6">
-                    <Link class="btn btn-info " target="__blank" to="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Annuler</Link>
-                  </div>
-                  <div class="col-sm-6">
-                    <Link class="btn btn-info " target="__blank" to="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Ajouter</Link>
-                  </div>
+                </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-6">
+                  <Link class="btn btn-info " target="__blank" to="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Annuler</Link>
+                </div>
+                <div class="col-sm-6">
+                  <Link class="btn btn-info " target="__blank" to="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Ajouter</Link>
                 </div>
               </div>
             </div>
           </div>
-
-
-
-
-
         </div>
       </div>
+    </div>
 
     </div>
   );
