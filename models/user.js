@@ -8,7 +8,7 @@ const userSchema = new Schema({
     email :String ,
     numTel: Number,
     adresse : String,
-    servicePost: String,
+    départment: String,
     contart :String,
     droitCongé : String,
     role:{
@@ -16,7 +16,7 @@ const userSchema = new Schema({
         default:'Employé',
         roles:['Employé' , 'Admin' , 'Responsable']
     },
-    password : String,
+    motDePasse : String,
     salaire : Number,
 
 })

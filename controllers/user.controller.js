@@ -43,11 +43,11 @@ exports.createUser = async (req, res) => {
         email,
         numTel,
         adresse,
-        servicePost,
+        départment,
         contart,
         droitCongé,
         role,
-        password,
+        motDePasse,
         salaire } = req.body;
 
     let isExist = await User.findOne({ email });
@@ -62,16 +62,16 @@ exports.createUser = async (req, res) => {
             email,
             numTel,
             adresse,
-            servicePost,
+            départment,
             contart,
             droitCongé,
             role,
-            password,
+            motDePasse,
             salaire,
         });
         let salt = await bcrypte.genSalt(10);
-        let hash = await bcrypte.hashSync(password,salt);
-        new_user.password=hash;
+        let hash = await bcrypte.hashSync(motDePasse,salt);
+        new_user.motDePasse=hash;
         await new_user.save();
         res.send("save effectué avec succes!")
     }

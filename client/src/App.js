@@ -8,8 +8,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Profile from './components/Profile';
 
+import NewUser from './components/NewUser';
+import UserList from './components/UserList';
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       <BrowserRouter>
         <Routes>
         
-        <Route exact path="/profile" element={<Profile/>} />
+        <Route  path="/newUser" element={<NewUser/>} />
+        <Route  path="/userList" element={<UserList/>} />
         
         </Routes>
       </BrowserRouter>

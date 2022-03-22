@@ -48,11 +48,15 @@ body{
 .btn {
     background-color: #08090a;  
     border: 0 solid rgba(0,0,0,.125);
+    color: #e2e8f0;
+    
    
 }
-.btn:hover{
-    color: #e2e8f0;
-}
+.btn:hover {
+    background-color: #c7cbd1;
+    color: #08090a;
+    
+  }
 .text-center{
     text-align:center;
     font-size:x-large;
@@ -64,7 +68,38 @@ body{
     border-radius: .25rem;
 }
 .icon{
-    /* display: flex;
-    justify-content: start; */
+    
     text-align: start;
 }
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #e2e8f0 ;
+    
+  }
+  
+ th, td {
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  tr:nth-child(even){background-color: white}
+
+  .navBarList{
+      background-color: #08090a;
+      height: 50px;
+      
+      
+      
+
+  }
+  h2{
+      color: #e2e8f0;
+      text-align: center;
+    
+  }
+
+
+
