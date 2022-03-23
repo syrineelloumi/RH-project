@@ -53,7 +53,7 @@ exports.createUser = async (req, res) => {
     let isExist = await User.findOne({ email });
     if (isExist) {
         res.status(400).json({ msg: "try an other email" });
-    }
+    }else{
 
     try {
         let new_user = new User({
@@ -78,7 +78,7 @@ exports.createUser = async (req, res) => {
     catch (err) {
         console.log(err)
 
-    }
+    }}
 
 
 }

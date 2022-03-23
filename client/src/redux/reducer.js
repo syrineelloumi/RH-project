@@ -2,7 +2,7 @@ import { GET_USERS } from "./actionTypes";
 
 
 let init = {
-  usersList:[],
+  usersList:null,
   
 };
 

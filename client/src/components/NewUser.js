@@ -21,10 +21,10 @@ const NewUser = () => {
   const [email, setEmail,] = useState('');
   const [numTel, setNumTel] = useState('');
   const [adresse, setAdresse] = useState('');
-  const [département, setDépatement] = useState('');
-  const [contart, setContart] = useState('');
+  const [départment, setDépartment] = useState('Marketing');
+  const [contart, setContart] = useState('CDD');
   const [droitCongé, setDroitCongé] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('Employé');
   const [motDePasse, setMotDePasse] = useState('');
   const [salaire, setSalaire] = useState('');
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const NewUser = () => {
       email: email,
       numTel: numTel,
       adresse: adresse,
-      département: département,
+      départment: départment,
       contart: contart,
       droitCongé: droitCongé,
       role: role,
@@ -49,14 +49,40 @@ const NewUser = () => {
     setEmail('')
     setNumTel('')
     setAdresse('')
-    setDépatement('')
+    setDépartment('')
     setContart('')
     setDroitCongé('')
     setRole('')
     setMotDePasse('')
     setSalaire('')
   }
+const handelDelete=()=>{
+  setNom('')
+  setPrenom('')
+  setEmail('')
+  setNumTel('')
+  setAdresse('')
+  setDépartment('')
+  setContart('')
+  setDroitCongé('')
+  setRole('')
+  setMotDePasse('')
+  setSalaire('')
+}
 
+console.log({
+  nom: nom,
+  prenom: prenom,
+  email: email,
+  numTel: numTel,
+  adresse: adresse,
+  départment: départment,
+  contart: contart,
+  droitCongé: droitCongé,
+  role: role,
+  motDePasse: motDePasse,
+  salaire: salaire,
+});
   return (
 
     <div className="container">
@@ -134,10 +160,10 @@ const NewUser = () => {
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label >Département</label>
-                        <select type="text" className="form-control" value={département} name="département" placeholder="Entrer Département" onChange={(e) => setDépatement(e.target.value)}>
+                        <select type="text" className="form-control" value={départment} name="département" placeholder="Entrer Département" onChange={(e) => setDépartment(e.target.value)}>
                           <option value="Marketing">Marketing</option>
                           <option value="Informatique">Informatique</option>
-                          <option value="Ressource Humaine">RH</option>
+                          <option value="RH">RH</option>
                         </select>
                       </div>
                     </div>
@@ -193,15 +219,15 @@ const NewUser = () => {
                   </div>
                   <hr />
 
+                </form>
                   <div className="row">
                     <div className="col-sm-6">
-                      <button onClick={() => onSubmit} className="btn btn-outline-primary"> ajouter</button>
+                      <button onClick={onSubmit} className="btn btn-outline-primary"> ajouter</button>
                     </div>
                     <div className="col-sm-6">
-                      <button onClick={timedRefresh} className="btn btn-outline-primary"> annuler</button>
+                      <button onClick={handelDelete} className="btn btn-outline-primary"> annuler</button>
                     </div>
                   </div>
-                </form>
               </div>
             </div>
           </div>
@@ -210,9 +236,7 @@ const NewUser = () => {
     </div >
   );
   
-  function timedRefresh() {
-    setTimeout("location.reload(true);");
-  }
+  
 }
 
 export default NewUser;

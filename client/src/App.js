@@ -11,6 +11,7 @@ import {
 
 import NewUser from './components/NewUser';
 import UserList from './components/UserList';
+import Profil from './components/Profil';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         
         <Route  path="/newUser" element={<NewUser/>} />
         <Route  path="/userList" element={<UserList/>} />
+        <Route  path="/profil" element={<Profil/>} />
         
         </Routes>
       </BrowserRouter>
