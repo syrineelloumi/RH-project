@@ -1,10 +1,8 @@
 const User = require("../models/user");
 const config = require("config");
-const bodyParser = require('body-parser')
-
-const mongoose = require("mongoose");
-const res = require("express/lib/response")
 const bcrypte = require("bcryptjs")
+const jwt = require("jsonwebtoken");
+const secret = config.get("secret");
 
 
 exports.getUsers = async (req, res) => {
@@ -105,6 +103,37 @@ exports.updateUser = async (req, res) => {
         //console.log(err)
         res.send(err)
 
+    }
+
+}
+//Login 
+exports.login= async(req,res)=>{
+    let {email,motDePasse}=req.body
+    try {
+        let thisUser = await User.findOne({email})
+        if(!thisUser){
+            res.status(400).json({msg:"email incorrect"})
+        }
+        let isMatch = await bcrypte.compare(motDePasse,thisUser.motDePasse)
+        if (!isMatch) {
+            res.status(400).json({msg:"Mot de passe incorrect"})
+            
+        }
+        let payload={
+            id:thisUser.id,
+            nom:thisUser.nom,
+            role:thisUser.role
+
+        }
+        let token = jwt.sign(payload,secret)
+        res.send({
+            token,
+            thisUser
+        })
+        
+    } catch (error) {
+        res.send(error)
+        
     }
 }
 

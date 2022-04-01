@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 
 const Profil = () => {
-    const dispatch = useDispatch()
-    useEffect(() => {
-      dispatch(getAllUsers())
-    }, [])
+    // const dispatch = useDispatch()
+    // useEffect(() => {
+    //   dispatch(getAllUsers())
+    // }, [])
     return (
     <div>
          <Link to="/userList">

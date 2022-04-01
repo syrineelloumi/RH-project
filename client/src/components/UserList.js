@@ -1,12 +1,18 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUsers } from '../redux/action';
+
+import {  useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+import { getAllUsers } from "../redux/action";
 
 // import { Container } from './styles';
 
 const UserList = () => {
   const { usersList } = useSelector((state) => state);
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllUsers())
+  }, [])
 
   // console.log(usersList.map((user) => user.nom));
   return (
@@ -36,7 +42,7 @@ const UserList = () => {
         <tbody>
 
           {
-            usersList.filter(e => e.départment === "Informatique").map((e, i) => <tr key={i}>
+          usersList &&  usersList.filter(e => e.départment === "Informatique").map((e, i) => <tr key={i}>
 
               <td className='row1'>{e.nom}</td>
               <td className='row1'>{e.prenom}</td>
@@ -57,7 +63,7 @@ const UserList = () => {
         <tbody>
 
         {
-            usersList.filter(e => e.départment === "Marketing").map((e, i) => <tr key={i}>
+          usersList &&    usersList.filter(e => e.départment === "Marketing").map((e, i) => <tr key={i}>
 
 
               <td className='row1'>{e.nom}</td>
@@ -79,7 +85,7 @@ const UserList = () => {
         <tbody>
 
         {
-            usersList.filter(e => e.départment === "RH").map((e, i) => <tr key={i}>
+          usersList &&    usersList.filter(e => e.départment === "RH").map((e, i) => <tr key={i}>
 
 
               <td className='row1'>{e.nom}</td>
