@@ -56,19 +56,19 @@ const NewUser = () => {
     setMotDePasse('')
     setSalaire('')
   }
-const handelDelete=()=>{
-  setNom('')
-  setPrenom('')
-  setEmail('')
-  setNumTel('')
-  setAdresse('')
-  setDépartment('')
-  setContart('')
-  setDroitCongé('')
-  setRole('')
-  setMotDePasse('')
-  setSalaire('')
-}
+// const handelDelete=()=>{
+//   setNom('')
+//   setPrenom('')
+//   setEmail('')
+//   setNumTel('')
+//   setAdresse('')
+//   setDépartment('')
+//   setContart('')
+//   setDroitCongé('')
+//   setRole('')
+//   setMotDePasse('')
+//   setSalaire('')
+// }
 
 console.log({
   nom: nom,
@@ -205,7 +205,7 @@ console.log({
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label >Mot de passe</label>
-                        <input type="text" className="form-control" value={motDePasse} name="motDePasse " placeholder="Entrer Mot de passe" onChange={(e) => setMotDePasse(e.target.value)} />
+                        <input type="password" className="form-control" value={motDePasse} name="motDePasse " placeholder="Entrer Mot de passe" onChange={(e) => setMotDePasse(e.target.value)} />
                       </div>
                     </div>
                   </div>
@@ -220,14 +220,12 @@ console.log({
                   <hr />
 
                 </form>
-                  <div className="row">
-                    <div className="col-sm-6">
+                  
+                    <div className="col-sm-12">
                       <button onClick={onSubmit} className="btn btn-outline-primary"> ajouter</button>
                     </div>
-                    <div className="col-sm-6">
-                      <button onClick={handelDelete} className="btn btn-outline-primary"> annuler</button>
-                    </div>
-                  </div>
+                   
+                  
               </div>
             </div>
           </div>

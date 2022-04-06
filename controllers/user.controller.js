@@ -118,21 +118,23 @@ exports.login= async(req,res)=>{
         if (!isMatch) {
             res.status(400).json({msg:"Mot de passe incorrect"})
             
+            
         }
         let payload={
-            id:thisUser.id,
+            id:thisUser._id,
             nom:thisUser.nom,
             role:thisUser.role
 
         }
-        let token = jwt.sign(payload,secret)
+        let token = jwt.sign(payload,secret , {expiresIn:'2h'});
         res.send({
-            token,
+            // token : "Bearer"+token,
+            token : token,
             thisUser
         })
         
     } catch (error) {
-        res.send(error)
+        res.status(500).json({error: error.message})
         
     }
 }
