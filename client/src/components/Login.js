@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../redux/action';
-import { Navigate } from 'react-router-dom';
+
 
 
 const theme = createTheme();
@@ -42,8 +42,8 @@ const Login = () => {
 // console.log(motDePasse);
   return (
     <div>
-      { localStorage.getItem("token")?(<Navigate to="/userList"/>):
-       (<ThemeProvider theme={theme}>
+      {/* { localStorage.getItem("token")?(<Navigate to="/userList"/>): */}
+       <ThemeProvider theme={theme}>
          <Grid container component="main" sx={{ height: '100vh' }}>
            <CssBaseline />
            <Grid
@@ -125,7 +125,7 @@ const Login = () => {
            </Grid>
          </Grid>
        </ThemeProvider>)
-    }
+     {/* }  */}
     </div>
   );
 }

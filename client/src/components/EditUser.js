@@ -1,90 +1,46 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { createUser } from '../redux/action';
-import { Link } from "react-router-dom";
-
-
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { editUser } from '../redux/action';
 
 
 
-const NewUser = () => {
-  // const [form, setForm] = useState({});
-  // const onChangeHandler = (e) => {
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
 
-  const [nom, setNom] = useState('');
-  const [prenom, setPrenom] = useState('');
-  const [email, setEmail,] = useState('');
-  const [numTel, setNumTel] = useState('');
-  const [adresse, setAdresse] = useState('');
-  const [départment, setDépartment] = useState('Marketing');
-  const [contart, setContart] = useState('CDD');
-  const [droitCongé, setDroitCongé] = useState('');
-  const [role, setRole] = useState('Employé');
-  const [motDePasse, setMotDePasse] = useState('');
-  const [salaire, setSalaire] = useState('');
-  const dispatch = useDispatch();
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    dispatch(createUser({
-      nom: nom,
-      prenom: prenom,
-      email: email,
-      numTel: numTel,
-      adresse: adresse,
-      départment: départment,
-      contart: contart,
-      droitCongé: droitCongé,
-      role: role,
-      motDePasse: motDePasse,
-      salaire: salaire,
-    }))
-    setNom('')
-    setPrenom('')
-    setEmail('')
-    setNumTel('')
-    setAdresse('')
-    setDépartment('')
-    setContart('')
-    setDroitCongé('')
-    setRole('')
-    setMotDePasse('')
-    setSalaire('')
-  }
-  // const handelDelete=()=>{
-  //   setNom('')
-  //   setPrenom('')
-  //   setEmail('')
-  //   setNumTel('')
-  //   setAdresse('')
-  //   setDépartment('')
-  //   setContart('')
-  //   setDroitCongé('')
-  //   setRole('')
-  //   setMotDePasse('')
-  //   setSalaire('')
-  // }
 
-  console.log({
-    nom: nom,
-    prenom: prenom,
-    email: email,
-    numTel: numTel,
-    adresse: adresse,
-    départment: départment,
-    contart: contart,
-    droitCongé: droitCongé,
-    role: role,
-    motDePasse: motDePasse,
-    salaire: salaire,
-  });
+
+const EditUser = () => {
+  const { usersList } = useSelector((state) => state);
+  const {id} = useParams();
+  let userEdit = usersList.find(user=> user._id === id);
+ 
+    const dispatch = useDispatch()
+    const [nom, setNom] = useState(userEdit.nom);
+    const [prenom, setPrenom] = useState(userEdit.prenom);
+    const [email, setEmail,] = useState(userEdit.email);
+    const [numTel, setNumTel] = useState(userEdit.numTel);
+    const [adresse, setAdresse] = useState(userEdit.adresse);
+    const [départment, setDépartment] = useState(userEdit.département);
+    const [contart, setContart] = useState(userEdit.contart);
+    const [droitCongé, setDroitCongé] = useState(userEdit.droitCongé);
+    const [role, setRole] = useState(userEdit.role);
+    const [motDePasse, setMotDePasse] = useState(userEdit.motDePasse);
+    const [salaire, setSalaire] = useState(userEdit.salaire);
+    console.log(userEdit.nom);
+
+    const onSubmit = (event) => {
+      event.preventDefault();
+      dispatch(editUser({id:userEdit._id,nom,prenom,email,numTel,adresse,départment,contart,droitCongé,role,motDePasse,salaire}))
+      
+    }
+
+   
   return (
+
+   
+
+    
 
     <div className="container">
       <div className="main-body">
@@ -92,14 +48,10 @@ const NewUser = () => {
 
         <nav className="nav-bar">
           <div className="nav-bar">
-          <div><span className="icon">
-              <Link to={"/userList"}>
-                <i className="bi bi-arrow-left" style={{ fontSize: "3rem", color: "black" }}></i>
-              </Link>
-            </span></div>
+            <div className="icon">
+              <i className="bi bi-arrow-left" style={{ fontSize: "3rem", color: "black" }}></i>
+            </div>
             <p className="text-center">Ajouter Utilisateur </p>
-           
-
           </div>
         </nav>
 
@@ -225,12 +177,12 @@ const NewUser = () => {
                   <hr />
 
                 </form>
-
-                <div className="col-sm-12">
-                  <button onClick={onSubmit} className="btn btn-outline-primary"> ajouter</button>
-                </div>
-
-
+                  
+                    <div className="col-sm-12">
+                      <button onClick={onSubmit} className="btn btn-outline-primary"> Modifier</button>
+                    </div>
+                   
+                  
               </div>
             </div>
           </div>
@@ -238,8 +190,8 @@ const NewUser = () => {
       </div>
     </div >
   );
-
-
+  
+  
 }
 
-export default NewUser;
+export default EditUser;

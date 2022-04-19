@@ -82,7 +82,7 @@ exports.createUser = async (req, res) => {
 }
 exports.deleteUser = async (req, res) => {
     try {
-        await User.findOneAndDelete({ nom: req.params.nom })
+        await User.findByIdAndDelete(req.params.id)
         res.send('user supprimer avec succes!')
 
     }
@@ -95,7 +95,7 @@ exports.deleteUser = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
     try {
-        await User.findOneAndUpdate({ nom: req.params.nom }, { ...req.body })
+        await User.findByIdAndUpdate(req.params.id, { ...req.body })
         res.send('mise a jour user avec succes!')
 
     }
