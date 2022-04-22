@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 
 
-import { deleteUser, getAllUsers } from "../redux/action";
+import { deleteUser, getAllUsers, getDepartements } from "../redux/action";
 
 // import { Container } from './styles';
 
@@ -17,14 +17,16 @@ const UserList = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getAllUsers())
+    dispatch(getDepartements())
+
   },[])
 
-  // console.log(usersList.map((user) => user.nom));
+  //console.log(usersList.map((user) => user.nom));
   return (
     <div>
       <nav className='navBarList'>
       <Link className='new' to={"/newUser"}>
-        <i class="bia bi-plus-circle">Nouveau Utilisateur</i>
+        <i className="bia bi-plus-circle">Nouveau Utilisateur</i>
         </Link>
         <h2> Liste des employés </h2>
        
@@ -60,13 +62,13 @@ const UserList = () => {
               <td className='row1'>{e.numTel}</td>
               <td className='row2'>
 
-                <span>
+                <span className='span'>
                   <Link to={`/editUser/${e._id}`}>
                     <i className="bim bi-pencil-square" >Modifier</i>
                   </Link>
                 </span>
 
-                <span onClick={() => {
+                <span className='span' onClick={() => {
                   dispatch(deleteUser(e._id));
                   dispatch(getAllUsers());
                 }}><i className="bis bi-trash" >Supprimer</i

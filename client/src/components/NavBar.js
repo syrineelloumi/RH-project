@@ -5,35 +5,35 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
-  <div class="container">
-  <div class="main-body">
+  
 
 
-    <nav aria-label="breadcrumb" class="main-breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">
-          <i class="bi bi-person-fill" style={{ fontSize: "3rem", color: "black" }}></i>
-          <p> Profil</p>
+  <nav  className="main-breadcrumb" >
+                    <ol className="breadcrumb">
+                    <li className="item mx-auto"><Link to="">
+          <i className="bi bi-person-fill" style={{ fontSize: "1rem", color: "black" }}></i>
+          <p style={{ color: "black" ,fontSize: "12px"}}>Profile</p>
+          </Link>
         </li>
-        <li class="breadcrumb-item"><Link to="javascript:void(0)">
-          <i class="bi bi-calendar-heart" style={{ fontSize: "3rem", color: "black" }}></i>
-          <p style={{ color: "black" }}>Congé</p>
+        <li className="item mx-auto"><Link to="">
+          <i className="bi bi-calendar-heart" style={{ fontSize: "1rem", color: "black" }}></i>
+          <p style={{ color: "black" ,fontSize: "12px" }}>Congé</p>
         </Link>
         </li>
-        <li class="breadcrumb-item "><Link to="index.html">
-          <i class="bi bi-calendar2-check" style={{ fontSize: "3rem", color: "black" }}></i>
-          <p style={{ color: "black" }}>Pointage</p>
+        <li className="item mx-auto"><Link to="index.html">
+          <i className="bi bi-calendar2-check" style={{ fontSize: "1rem", color: "black" }}></i>
+          <p style={{ color: "black" ,fontSize: "12px"}}>Pointage</p>
         </Link>
         </li>
-        <li class="breadcrumb-item"><Link to="index.html">
-          <i class="bi bi-card-heading" style={{ fontSize: "3rem", color: "black" }}></i>
-          <p style={{ color: "black" }}>Fiche de paie</p>
+        <li className="item mx-auto"><Link to="index.html">
+          <i className="bi bi-card-heading" style={{ fontSize: "1rem", color: "black" }}></i>
+          <p style={{ color: "black" ,fontSize: "12px"}}>Fiche de paie</p>
         </Link>
         </li>
-      </ol>
-    </nav>;
-    </div>
-    </div>
+                    </ol>
+                </nav>
+
+
   );
 }
 

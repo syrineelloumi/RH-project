@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { createUser } from '../redux/action';
 import { Link } from "react-router-dom";
@@ -8,27 +8,33 @@ import { Link } from "react-router-dom";
 
 
 
+
 const NewUser = () => {
-  // const [form, setForm] = useState({});
-  // const onChangeHandler = (e) => {
-  //   setForm({
-  //     ...form,
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
+
+  const { departementsList } = useSelector((state) => state);
+
+
+
+  
+
+ const dep= departementsList.map((el)=>el.nomDépartment);
+ const [depart, setDepart] = React.useState(dep[0]);
+
+
 
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
   const [email, setEmail,] = useState('');
   const [numTel, setNumTel] = useState('');
   const [adresse, setAdresse] = useState('');
-  const [départment, setDépartment] = useState('Marketing');
+ 
   const [contart, setContart] = useState('CDD');
   const [droitCongé, setDroitCongé] = useState('');
   const [role, setRole] = useState('Employé');
   const [motDePasse, setMotDePasse] = useState('');
   const [salaire, setSalaire] = useState('');
   const dispatch = useDispatch();
+  // const [errors , setErrors]=useState({});
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -38,7 +44,7 @@ const NewUser = () => {
       email: email,
       numTel: numTel,
       adresse: adresse,
-      départment: départment,
+      départment: depart,
       contart: contart,
       droitCongé: droitCongé,
       role: role,
@@ -50,12 +56,14 @@ const NewUser = () => {
     setEmail('')
     setNumTel('')
     setAdresse('')
-    setDépartment('')
+    setDepart('')
     setContart('')
     setDroitCongé('')
     setRole('')
     setMotDePasse('')
     setSalaire('')
+
+    
   }
   // const handelDelete=()=>{
   //   setNom('')
@@ -77,13 +85,15 @@ const NewUser = () => {
     email: email,
     numTel: numTel,
     adresse: adresse,
-    départment: départment,
+    départment: depart,
     contart: contart,
     droitCongé: droitCongé,
     role: role,
     motDePasse: motDePasse,
     salaire: salaire,
   });
+
+
   return (
 
     <div className="container">
@@ -124,7 +134,7 @@ const NewUser = () => {
 
                       <div className="form-group">
                         <label >Nom</label>
-                        <input type="text" className="form-control" value={nom} name="nom" placeholder="Enter Nom " onChange={(e) => setNom(e.target.value)} />
+                        <input type="text" className="form-control" value={nom} name="nom" placeholder="Enter Nom " onChange={(e) => setNom(e.target.value)}  />
                       </div>
                     </div>
 
@@ -165,10 +175,9 @@ const NewUser = () => {
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label >Département</label>
-                        <select type="text" className="form-control" value={départment} name="département" placeholder="Entrer Département" onChange={(e) => setDépartment(e.target.value)}>
-                          <option value="Marketing">Marketing</option>
-                          <option value="Informatique">Informatique</option>
-                          <option value="RH">RH</option>
+                        <select type="text" className="form-control" value={depart}  placeholder="Entrer Département" onChange={e=>setDepart(e.target.value)}>
+                         { dep.map((e,i)=>(<option key={i}>{e}</option> )) }
+                          
                         </select>
                       </div>
                     </div>

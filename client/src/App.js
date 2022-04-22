@@ -14,6 +14,8 @@ import UserList from './components/UserList';
 
 import Login from './components/Login';
 import EditUser from './components/EditUser';
+import Profile from './components/Profile';
+import NavBar from './components/NavBar';
 
 
 function App() {
@@ -26,7 +28,8 @@ function App() {
         <Route  path="/userList" element={<UserList/>} />
         <Route  path="/" element={<Login/>} />
         <Route  path="/editUser/:id" element={<EditUser/>} />
-        
+        <Route  path="/profile" element={<Profile/>} />
+        <Route  path="/navbar" element={<NavBar/>} />
         </Routes>
       </BrowserRouter>
       

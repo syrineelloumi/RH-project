@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { CREATE_USER, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS } from "./actionTypes";
+import { CREATE_USER, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS } from "./actionTypes";
 
 
 export const createUser = (newUser) => async (dispatch) => {
@@ -70,7 +70,11 @@ export const userLogin = (user) => async (dispatch) => {
     });
 
     // Location.replace("/userList")
-    window.location.href = "/userList";
+    // if(user.role==="Admin"){
+    //   window.location.href = "/userList";}
+    //   else{
+      window.location.href = "/profile";
+    
     console.log(res.data);
   } catch (error) {
     dispatch({
@@ -123,6 +127,58 @@ export const deleteUser = (id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: DELETE_USER_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
+
+
+
+export const getDepartements = () => async (dispatch) => {
+  dispatch({
+    type: GET_DEPARTEMENT,
+  });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  try {
+    let res = await axios.get("/departement/getDepartements", config);
+    dispatch({
+      type: GET_DEPARTEMENT_SUCCESS,
+      payload: res.data,
+    });
+    
+  } catch (error) {
+    dispatch({
+      type: GET_DEPARTEMENT_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
+
+
+export const getProfile = () => async (dispatch) => {
+  dispatch({
+    type: GET_PROFILE,
+  });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+        Authorization: token,
+    },
+  };
+  try {
+    let res = await axios.get("/user/getUser", config);
+    dispatch({
+      type: GET_PROFILE_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_PROFILE_FAIL,
       payload: error.response.data,
     });
   }

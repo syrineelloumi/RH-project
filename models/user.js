@@ -8,8 +8,8 @@ const userSchema = new Schema({
     email :String ,
     numTel: Number,
     adresse : String,
-    départment: String,
-    contart :String,
+    département: String,
+    contrat :String,
     droitCongé : String,
     role:{
         type:String,

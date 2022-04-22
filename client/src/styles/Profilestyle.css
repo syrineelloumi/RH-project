@@ -70,6 +70,8 @@ body{
 .nav-bar{
     background-color:#c7cbd1;
     border-radius: .25rem;
+    
+    
 }
 .icon{
     
@@ -146,6 +148,7 @@ table {
 }
 .bim:hover{
     color: rgb(83, 83, 201);
+    display: inline-block;
 }
 .bia{
     color: white;
@@ -158,7 +161,14 @@ table {
 .tabhead{
     background-color: #c7cbd1; 
 }
+.mb-0{
+    text-align: start;
+    margin-left: 6px;
+}
 
+.card-body-profil{
+    height: 470px;
+}
 
 
 

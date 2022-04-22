@@ -1,5 +1,5 @@
 let express = require('express')
-const{getUsers,getUser,createUser,deleteUser,updateUser, login}= require('../controllers/user.controller')
+const{getUsers,getUser,createUser,deleteUser,updateUser, login, getUserByNom}= require('../controllers/user.controller')
 
 //const  authorization = require('../middleware/auth')
 const  auth  = require('../middleware/auth')
@@ -10,7 +10,8 @@ let router = express.Router()
 
 // router.get('/getUsers',passport.authenticate('jwt', { session: false }),rolevalidator(["Admin"]),getUsers)
 router.get('/getUsers',auth,getUsers)
-router.get('/getUser/:nom'   ,getUser)
+router.get('/getUserByNom/:nom',getUserByNom)
+router.get('/getUser',auth,getUser)
 router.post('/createUser',createUser)
 router.delete('/deleteUser/:id',auth ,deleteUser)
 router.put('/updateUser/:id',auth   ,updateUser)

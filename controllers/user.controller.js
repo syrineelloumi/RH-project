@@ -19,8 +19,8 @@ exports.getUsers = async (req, res) => {
 
     }
 }
-
-exports.getUser = async (req, res) => {
+//get user by nom
+exports.getUserByNom = async (req, res) => {
     try {
         let user = await User.findOne({ nom: req.params.nom })
         res.send(user)
@@ -31,6 +31,11 @@ exports.getUser = async (req, res) => {
 
     }
 }
+
+// get a user
+exports.getUser=async(req,res)=>{
+    res.send(req.user)
+  }
 
 
 
@@ -124,6 +129,7 @@ exports.login= async(req,res)=>{
             id:thisUser._id,
             nom:thisUser.nom,
             role:thisUser.role
+            
 
         }
         let token = jwt.sign(payload,secret , {expiresIn:'2h'});
