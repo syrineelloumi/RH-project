@@ -59,6 +59,7 @@ export const getAllUsers = () => async (dispatch) => {
 export const userLogin = (user) => async (dispatch) => {
   dispatch({ type: LOGIN });
   console.log(user);
+  
   try {
 
     let res = await axios.post("/user/login", user);
@@ -68,14 +69,15 @@ export const userLogin = (user) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
-
-    // Location.replace("/userList")
-    // if(user.role==="Admin"){
-    //   window.location.href = "/userList";}
-    //   else{
-      window.location.href = "/profile";
     
-    console.log(res.data);
+    // window.location.href = "/userList"
+   
+     if(res.data.thisUser.role==="Admin"){
+      window.location.href = "/userList";}
+       else{
+      window.location.href = "/profile";}
+    
+    
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,

@@ -19,5 +19,5 @@ err?console.log(err):console.log("server is started"))
 
 
 // passport
-app.use(passport.initialize())
-require('./middleware/passport')(passport)
+// app.use(passport.initialize())
+// require('./middleware/passport')(passport)
