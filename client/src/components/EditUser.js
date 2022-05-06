@@ -11,7 +11,7 @@ import { editUser } from '../redux/action';
 
 
 const EditUser = () => {
-  const { usersList } = useSelector((state) => state);
+  const { usersList , errors } = useSelector((state) => state);
   const {id} = useParams();
   let userEdit = usersList.find(user=> user._id === id);
  
@@ -51,7 +51,7 @@ const EditUser = () => {
             <div className="icon">
               <i className="bi bi-arrow-left" style={{ fontSize: "3rem", color: "black" }}></i>
             </div>
-            <p className="text-center">Ajouter Utilisateur </p>
+            <p className="text-center"> Modifier Utilisateur </p>
           </div>
         </nav>
 
@@ -77,6 +77,11 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Nom</label>
                         <input type="text" className="form-control" value={nom} name="nom" placeholder="Enter Nom " onChange={(e) => setNom(e.target.value)} />
+                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "nom").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
+                       
                       </div>
                     </div>
 
@@ -84,6 +89,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Prenom</label>
                         <input type="text" className="form-control" value={prenom} name="prenom" placeholder="Entrer prenom" onChange={(e) => setPrenom(e.target.value)} />
+                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "prenom").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
                       </div>
                     </div>
                   </div>
@@ -94,6 +103,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Télephone</label>
                         <input type="number" className="form-control" value={numTel} name="numTel" placeholder="Entrer Num Tel" onChange={(e) => setNumTel(e.target.value)} />
+                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "numTel").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
                       </div>
                     </div>
 
@@ -101,6 +114,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Email</label>
                         <input type="email" className="form-control" value={email} name="email" placeholder="Entrer Adresse Email" onChange={(e) => setEmail(e.target.value)} />
+                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "email").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
                       </div>
                     </div>
                   </div>
@@ -111,6 +128,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Adresse</label>
                         <input type="text" className="form-control" value={adresse} name="adresse" placeholder="Entrer Adresse" onChange={(e) => setAdresse(e.target.value)} />
+                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "adresse").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
                       </div>
                     </div>
 
@@ -142,6 +163,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Droit Congé</label>
                         <input type="text" className="form-control" value={droitCongé} name="droitCongé " placeholder="Enter Droit Congé" onChange={(e) => setDroitCongé(e.target.value)} />
+                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "droitCongé").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
                       </div>
                     </div>
                   </div>
@@ -163,6 +188,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Mot de passe</label>
                         <input type="password" className="form-control" value={motDePasse} name="motDePasse " placeholder="Entrer Mot de passe" onChange={(e) => setMotDePasse(e.target.value)} />
+                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "motDePasse").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
                       </div>
                     </div>
                   </div>
@@ -172,6 +201,10 @@ const EditUser = () => {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <label >Salaire</label>
                       <input type="number" className="form-control" value={salaire} name="salaire" placeholder="Entrer montant salaire" onChange={(e) => setSalaire(e.target.value)} />
+                      <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
+                          errors.errors.filter(err => err.param === "salaire").map((msg)=>msg.msg)
+                        :""
+                        }</span> 
                     </div>
                   </div>
                   <hr />

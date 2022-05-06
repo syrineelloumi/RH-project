@@ -1,19 +1,29 @@
 import axios from "axios";
 
-import { CREATE_USER, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS } from "./actionTypes";
+import { CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
 
 
 export const createUser = (newUser) => async (dispatch) => {
+  dispatch({ type: CREATE_USER });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      Authorization: token,
+    },
+  };
   try {
-    const res = await axios.post("/user/createUser", newUser);
+    const res = await axios.post("/user/createUser", newUser, config);
     dispatch({
-      type: CREATE_USER,
+      type: CREATE_USER_SUCCESS,
       payload: res.data,
 
     });
     console.log("res", res);
-  } catch (error) {
-    console.log("erreur", error);
+  }catch (error) {
+  dispatch({
+    type: CREATE_USER__FAIL,
+    payload: error.response.data,
+  });
   }
 }
 
@@ -106,7 +116,9 @@ export const editUser = (editUser) => async (dispatch) => {
     dispatch({
       type: EDIT_USER_FAIL,
       payload: error.response.data,
+      
     });
+    console.log("erreur", error);
   }
 };
 
@@ -184,6 +196,15 @@ export const getProfile = () => async (dispatch) => {
       payload: error.response.data,
     });
   }
+};
+
+export const logOut = () => async (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+    payload: null})
+
+    window.location.href = "/"
+  
 };
 
 

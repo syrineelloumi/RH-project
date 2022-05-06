@@ -1,4 +1,5 @@
 {
+    
     "db":"mongodb+srv://syrine:12345@cluster0.kay7p.mongodb.net/rhProjectBd?retryWrites=true&w=majority",
    "secret":"salut"
 }

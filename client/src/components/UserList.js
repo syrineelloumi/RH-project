@@ -54,7 +54,7 @@ const UserList = () => {
         <tbody>
 
           {
-            usersList && usersList.filter(e => e.départment === "Informatique").map((e, i) => <tr key={i}>
+            usersList && usersList.filter(e => e.département === "Informatique").map((e, i) => <tr key={i}>
 
               <td className='row1'>{e.nom}</td>
               <td className='row1'>{e.prenom}</td>
@@ -89,7 +89,7 @@ const UserList = () => {
         <tbody>
 
           {
-            usersList && usersList.filter(e => e.départment === "Marketing").map((e, i) => <tr key={i}>
+            usersList && usersList.filter(e => e.département === "Marketing").map((e, i) => <tr key={i}>
 
 
               <td className='row1'>{e.nom}</td>
@@ -124,7 +124,7 @@ const UserList = () => {
         <tbody>
 
           {
-            usersList && usersList.filter(e => e.départment === "RH").map((e, i) => <tr key={i}>
+            usersList && usersList.filter(e => e.département === "RH").map((e, i) => <tr key={i}>
 
 
               <td className='row1'>{e.nom}</td>

@@ -1,4 +1,4 @@
-import { DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS } from "./actionTypes";
+import { CREATE_USER, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
 
 
 let init = {
@@ -8,6 +8,7 @@ let init = {
   loading: false,
   isAuth: false,
   departementsList: null,
+  token: localStorage.getItem("token"),
 
 
 };
@@ -15,22 +16,30 @@ let init = {
 export const reducer = (state = init, { type, payload }) => {
   switch (type) {
     case GET_USERS:
+    case CREATE_USER:
       return {
         ...state,
         usersList: payload,
-        loading: false
+        loading: false,
+        errors: null
       };
     case DELETE_USER:
-    case LOGIN:
     case GET_PROFILE:
       return {
         ...state,
         loading: true,
+        errors: null
+      };
+    case LOGIN:
+      return {
+        ...state,
+        loading: true
       };
     case LOGIN_FAIL:
     case DELETE_USER_FAIL:
     case EDIT_USER_FAIL:
     case GET_PROFILE_FAIL:
+    case CREATE_USER__FAIL:
       return {
         ...state,
         errors: payload,
@@ -87,6 +96,16 @@ export const reducer = (state = init, { type, payload }) => {
         user: payload,
         errors: null,
       };
+      case LOGOUT:
+        return {
+          ...state,
+          loading: false,
+          user: payload,
+          errors: null,
+          isAuth: false,
+          token: null,
+          usersList: null, 
+        };
 
 
     default:

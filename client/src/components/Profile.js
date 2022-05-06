@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getProfile } from "../redux/action";
 import NavBar from "./NavBar";
 
@@ -10,6 +11,7 @@ const Profile = () => {
     useEffect(() => {
         dispatch(getProfile());
       }, []);
+     
     return (
         <div className="container">
             <div className="main-body">
@@ -87,13 +89,13 @@ const Profile = () => {
                                             <h6 className="mb-0">Département</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                        {`${user.départment}`}
+                                        {`${user.département}`}
                                         </div>
                                     </div>
                                     <hr />
                                     <div className="row">
                                         <div className="col-sm-3">
-                                            <h6 className="mb-0">Contart</h6>
+                                            <h6 className="mb-0">Contrat</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
                                         {`${user.contrat}`}

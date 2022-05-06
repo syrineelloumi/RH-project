@@ -9,7 +9,9 @@ const userSchema = new Schema({
     numTel: Number,
     adresse : String,
     département: String,
-    contrat :String,
+    contrat :{ type:String,
+        default:'CDD',
+        roles:['CDD' , 'CDI']},
     droitCongé : String,
     role:{
         type:String,
