@@ -2,7 +2,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getProfile } from "../redux/action";
+
+import { getDepartements, getProfile } from "../redux/action";
 import NavBar from "./NavBar";
 
 const Profile = () => {
@@ -11,6 +12,10 @@ const Profile = () => {
     useEffect(() => {
         dispatch(getProfile());
       }, []);
+      useEffect(() => {
+        dispatch(getDepartements());
+      }, []);
+     
      
     return (
         <div className="container">
@@ -24,7 +29,7 @@ const Profile = () => {
                         <div className="card">
                             <div className="card-body-profil">
                                 <div className="d-flex flex-column align-items-center text-center mt-5">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                                    <img src={user.image} alt="Admin" className="rounded-circle" width="150" />
                                     <div className="mt-5">
                                         <h4>{`BIENVENUE ${user.nom} ${user.prenom}`}</h4>
                                         
@@ -105,6 +110,7 @@ const Profile = () => {
                                     <div className="row">
                                         <div className="col-sm-12">
                                             <a className="btn btn-info "  href={`/editUser/${user._id}`}>Modifier</a>
+                                           
                                         </div>
                                     </div>
                             </div>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { createUser } from '../redux/action';
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 
 
@@ -14,14 +15,10 @@ import { Link } from "react-router-dom";
 const NewUser = () => {
 
   const { departementsList, errors } = useSelector((state) => state);
-  // const errors = useSelector(state => state.errors)
-
-
-
+  
 
   const dep = departementsList.map((el) => el.nomDépartment);
   const [depart, setDepart] = React.useState(dep[0]);
-
 
 
   const [nom, setNom] = useState('');
@@ -35,8 +32,24 @@ const NewUser = () => {
   const [role, setRole] = useState('Employé');
   const [motDePasse, setMotDePasse] = useState('');
   const [salaire, setSalaire] = useState('');
+  const [image, setImage] = useState('');
   const dispatch = useDispatch();
   // const [errors , setErrors]=useState({});
+
+  const[file , setFile]=useState(null); 
+  const[url , setUrl]=useState("");
+// cloudName: etudiante
+// presetName: rhApplication
+// lien api: https://api.cloudinary.com/v1_1/
+
+const uploadImage = async() =>{
+  const form = new FormData()
+  form.append ('file',file)
+  form.append("upload_preset" , "rhApplication");
+ await axios.post("https://api.cloudinary.com/v1_1/etudiante/upload",form)
+ .then((result)=>setUrl(result.data.secure_url));
+
+}
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -52,6 +65,7 @@ const NewUser = () => {
       role: role,
       motDePasse: motDePasse,
       salaire: salaire,
+      image:url,
     }))
     setNom('')
     setPrenom('')
@@ -64,6 +78,7 @@ const NewUser = () => {
     setRole('Employé')
     setMotDePasse('')
     setSalaire('')
+    setImage('')
 
 
   }
@@ -81,6 +96,7 @@ const NewUser = () => {
     role: role,
     motDePasse: motDePasse,
     salaire: salaire,
+    image:image,
   });
   // console.log(errors.errors.filter(err => err.param === "nom").map((msg) => msg.msg));
 
@@ -111,7 +127,9 @@ const NewUser = () => {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                  <img src={url} alt="" className="rounded-circle" width="150px" height="150px" />
+                  <input  type="file"  accept='image/png , image/jpg' style={{fontSize:"12px"}} onChange={(e)=>setFile(e.target.files[0])}></input>
+                  <button onClick={uploadImage} style={{fontSize:"12px"}} >enregistrer</button>
                 </div>
               </div>
             </div>
@@ -140,8 +158,8 @@ const NewUser = () => {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label >Prenom</label>
-                        <input type="text" className="form-control" value={prenom} name="prenom" placeholder="Entrer prenom" onChange={(e) => setPrenom(e.target.value)} />
+                        <label >Prénom</label>
+                        <input type="text" className="form-control" value={prenom} name="prenom" placeholder="Entrer Prénom" onChange={(e) => setPrenom(e.target.value)} />
                         <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
                           errors.errors.filter(err => err.param === "prenom").map((msg)=>msg.msg)
                         :""

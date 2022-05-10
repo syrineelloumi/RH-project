@@ -33,9 +33,9 @@ exports.getUserByNom = async (req, res) => {
 }
 
 // get a user
-exports.getUser=async(req,res)=>{
+exports.getUser = async (req, res) => {
     res.send(req.user)
-  }
+}
 
 
 
@@ -51,37 +51,40 @@ exports.createUser = async (req, res) => {
         droitCongé,
         role,
         motDePasse,
-        salaire } = req.body;
+        salaire,
+        image } = req.body;
 
     let isExist = await User.findOne({ email });
     if (isExist) {
         res.status(400).json({ msg: "try an other email" });
-    }else{
+    } else {
 
-    try {
-        let new_user = new User({
-            nom,
-            prenom,
-            email,
-            numTel,
-            adresse,
-            département,
-            contrat,
-            droitCongé,
-            role,
-            motDePasse,
-            salaire,
-        });
-        let salt = await bcrypte.genSalt(10);
-        let hash = await bcrypte.hashSync(motDePasse,salt);
-        new_user.motDePasse=hash;
-        await new_user.save();
-        res.send("save effectué avec succes!")
+        try {
+            let new_user = new User({
+                nom,
+                prenom,
+                email,
+                numTel,
+                adresse,
+                département,
+                contrat,
+                droitCongé,
+                role,
+                motDePasse,
+                salaire,
+                image,
+            });
+            let salt = await bcrypte.genSalt(10);
+            let hash = await bcrypte.hashSync(motDePasse, salt);
+            new_user.motDePasse = hash;
+            await new_user.save();
+            res.send("save effectué avec succes!")
+        }
+        catch (err) {
+            console.log(err)
+
+        }
     }
-    catch (err) {
-        console.log(err)
-
-    }}
 
 
 }
@@ -112,36 +115,36 @@ exports.updateUser = async (req, res) => {
 
 }
 //Login 
-exports.login= async(req,res)=>{
-    let {email,motDePasse}=req.body
+exports.login = async (req, res) => {
+    let { email, motDePasse } = req.body
     try {
-        let thisUser = await User.findOne({email})
-        if(!thisUser){
-            res.status(400).json({msg:"email incorrect"})
+        let thisUser = await User.findOne({ email })
+        if (!thisUser) {
+            res.status(400).json({ msg: "email incorrect" })
         }
-        let isMatch = await bcrypte.compare(motDePasse,thisUser.motDePasse)
+        let isMatch = await bcrypte.compare(motDePasse, thisUser.motDePasse)
         if (!isMatch) {
-            res.status(400).json({msg:"Mot de passe incorrect"})
-            
-            
-        }
-        let payload={
-            id:thisUser._id,
-            nom:thisUser.nom,
-            role:thisUser.role
-            
+            res.status(400).json({ msg: "Mot de passe incorrect" })
+
 
         }
-        let token = jwt.sign(payload,secret , {expiresIn:'2h'});
+        let payload = {
+            id: thisUser._id,
+            nom: thisUser.nom,
+            role: thisUser.role
+
+
+        }
+        let token = jwt.sign(payload, secret, { expiresIn: '2h' });
         res.send({
             // token : "Bearer"+token,
-            token : token,
+            token: token,
             thisUser
         })
-        
+
     } catch (error) {
-        res.status(500).json({error: error.message})
-        
+        res.status(500).json({ error: error.message })
+
     }
 }
 

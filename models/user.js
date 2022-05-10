@@ -20,6 +20,7 @@ const userSchema = new Schema({
     },
     motDePasse : String,
     salaire : Number,
+    image :String,
 
 })
 module.exports=mongoose.model("User",userSchema)

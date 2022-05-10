@@ -118,7 +118,9 @@ table {
   h2{
       color: white;
       text-align: center;
-      font-style: italic;
+      font-style:normal;
+      
+      
     
   }
 .row1{
@@ -160,7 +162,9 @@ table {
 }
 .bia{
     color: white;
-    padding-left: 80pc;
+    padding: 8px , 8px ,80px ;
+    padding-left: 1280px; 
+   
     
 }
 .new:hover{
@@ -192,6 +196,20 @@ table {
   border: 2px solid #000;
   box-shadow: 24;
   padding: 10px;
+}
+.modelBox2{
+    
+        position:absolute;
+        top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30pc;
+      height: 15pc;
+    
+      background-color: white;
+      border: 2px solid #000;
+      box-shadow: 24;
+      padding: 10px
 }
 
 

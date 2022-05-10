@@ -2,8 +2,9 @@ let express=require('express')
 let app=express()
 let connectDB=require ('./config/connectBD')
 const user = require('./routers/user')
-const passport = require('passport')
+// const passport = require('passport')
 const departement = require('./routers/departement')
+const Présence = require('./routers/Présence')
 
 
 
@@ -14,6 +15,7 @@ let PORT=process.env.PORT||8888
 app.use(express.json())
 app.use('/user', user)
 app.use('/departement',departement)
+app.use('/presence',Présence)
 app.listen(PORT,(err)=>
 err?console.log(err):console.log("server is started"))
 

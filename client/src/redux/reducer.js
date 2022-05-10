@@ -1,4 +1,4 @@
-import { CREATE_USER, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
+import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, CREATE_USER, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
 
 
 let init = {
@@ -17,6 +17,7 @@ export const reducer = (state = init, { type, payload }) => {
   switch (type) {
     case GET_USERS:
     case CREATE_USER:
+      case ADD_DEPART:
       return {
         ...state,
         usersList: payload,
@@ -40,6 +41,7 @@ export const reducer = (state = init, { type, payload }) => {
     case EDIT_USER_FAIL:
     case GET_PROFILE_FAIL:
     case CREATE_USER__FAIL:
+    case ADD_DEPART_FAIL:
       return {
         ...state,
         errors: payload,
@@ -63,24 +65,25 @@ export const reducer = (state = init, { type, payload }) => {
     case EDIT_USER_SUCCESS:
       return {
         ...state,
-        user: state.user.map((u) => (
+        // user: state.user.map((u) => (
 
-          u._id === payload._id ? {
-            ...u,
-            nom: payload.nom,
-            prenom: payload.prenom,
-            email: payload.email,
-            numTel: payload.numTel,
-            adresse: payload.adresse,
-            département: payload.département,
-            contrat: payload.contrat,
-            droitCongé: payload.droitCongé,
-            role: payload.role,
-            motDePasse: payload.motDePasse,
-            salaire: payload.salaire,
-          } : u
-        )
-        ),
+        //   u._id === payload._id ? {
+        //     ...u,
+        //     nom: payload.nom,
+        //     prenom: payload.prenom,
+        //     email: payload.email,
+        //     numTel: payload.numTel,
+        //     adresse: payload.adresse,
+        //     département: payload.département,
+        //     contrat: payload.contrat,
+        //     droitCongé: payload.droitCongé,
+        //     role: payload.role,
+        //     motDePasse: payload.motDePasse,
+        //     salaire: payload.salaire,
+        //     image: payload.image,
+        //   } : u
+        // )
+        // ),
         loading: false,
         errors: null,
       };
@@ -96,19 +99,29 @@ export const reducer = (state = init, { type, payload }) => {
         user: payload,
         errors: null,
       };
-      case LOGOUT:
-        return {
-          ...state,
-          loading: false,
-          user: payload,
-          errors: null,
-          isAuth: false,
-          token: null,
-          usersList: null, 
-        };
+    case LOGOUT:
+      return {
+        ...state,
+        loading: false,
+        user: payload,
+        errors: null,
+        isAuth: false,
+        token: null,
+        usersList: null,
+      };
+      case ADD_DEPART_SUCCESS:
+    return {
+      ...state,
+      departementsList: payload,
+      loading: false,
+      errors: null,
+       
+    };
 
 
     default:
       return state;
   }
+
+  
 };

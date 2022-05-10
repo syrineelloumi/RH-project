@@ -1,8 +1,10 @@
 
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { editUser } from '../redux/action';
+import { editUser, getDepartements } from '../redux/action';
+import axios from "axios";
 
 
 
@@ -11,36 +13,72 @@ import { editUser } from '../redux/action';
 
 
 const EditUser = () => {
-  const { usersList , errors } = useSelector((state) => state);
-  const {id} = useParams();
-  let userEdit = usersList.find(user=> user._id === id);
- 
-    const dispatch = useDispatch()
-    const [nom, setNom] = useState(userEdit.nom);
-    const [prenom, setPrenom] = useState(userEdit.prenom);
-    const [email, setEmail,] = useState(userEdit.email);
-    const [numTel, setNumTel] = useState(userEdit.numTel);
-    const [adresse, setAdresse] = useState(userEdit.adresse);
-    const [départment, setDépartment] = useState(userEdit.département);
-    const [contart, setContart] = useState(userEdit.contart);
-    const [droitCongé, setDroitCongé] = useState(userEdit.droitCongé);
-    const [role, setRole] = useState(userEdit.role);
-    const [motDePasse, setMotDePasse] = useState(userEdit.motDePasse);
-    const [salaire, setSalaire] = useState(userEdit.salaire);
-    console.log(userEdit.nom);
+  const { usersList, errors, departementsList, user } = useSelector((state) => state);
+  const { id } = useParams();
 
-    const onSubmit = (event) => {
-      event.preventDefault();
-      dispatch(editUser({id:userEdit._id,nom,prenom,email,numTel,adresse,départment,contart,droitCongé,role,motDePasse,salaire}))
-      
-    }
+  let userEdit = null
+  if (user.role === "Admin") {
+    userEdit = usersList.find(user => user._id === id);
+  }
+  else {
+    userEdit = user;
+  }
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDepartements());
+  }, []);
 
-   
+  const dep = departementsList.map((el) => el.nomDépartment);
+  const [depart, setDepart] = React.useState(dep[0]);
+  console.log(userEdit);
+
+  const [file, setFile] = useState(null);
+  const [url, setUrl] = useState("");
+
+  const uploadImage = async () => {
+    const form = new FormData()
+    form.append('file', file)
+    form.append("upload_preset", "rhApplication");
+    await axios.post("https://api.cloudinary.com/v1_1/etudiante/upload", form)
+      .then((result) => setUrl(result.data.secure_url));
+
+
+  }
+  console.log(url);
+
+
+
+  const [nom, setNom] = useState(userEdit.nom);
+  const [prenom, setPrenom] = useState(userEdit.prenom);
+  const [email, setEmail,] = useState(userEdit.email);
+  const [numTel, setNumTel] = useState(userEdit.numTel);
+  const [adresse, setAdresse] = useState(userEdit.adresse);
+  const [département, setDépartement] = useState(userEdit.département);
+  const [contrat, setContrat] = useState(userEdit.contrat);
+  const [droitCongé, setDroitCongé] = useState(userEdit.droitCongé);
+  const [role, setRole] = useState(userEdit.role);
+  const [motDePasse, setMotDePasse] = useState(userEdit.motDePasse);
+  const [salaire, setSalaire] = useState(userEdit.salaire);
+  const [image, setImage] = useState(userEdit.image);
+
+
+
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(editUser({id:userEdit._id,
+      nom: nom, prenom: prenom, email: email, numTel: numTel, adresse:adresse, département: département
+      , contrat: contrat, droitCongé: droitCongé, role: role, motDePasse: motDePasse, salaire: salaire,image:url
+    }))
+
+  }
+console.log(nom);
+
   return (
 
-   
 
-    
+
+
 
     <div className="container">
       <div className="main-body">
@@ -61,7 +99,9 @@ const EditUser = () => {
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
+                  <img src={image} alt="Admin" className="rounded-circle" width="150" />
+                  <input type="file" accept='image/png , image/jpg' style={{ fontSize: "12px" }} onChange={(e) => setFile(e.target.files[0])}></input>
+                  <button onClick={uploadImage} style={{ fontSize: "12px" }} >enregistrer</button>
                 </div>
               </div>
             </div>
@@ -77,11 +117,11 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Nom</label>
                         <input type="text" className="form-control" value={nom} name="nom" placeholder="Enter Nom " onChange={(e) => setNom(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "nom").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
-                       
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "nom").map((msg) => msg.msg)
+                          : ""
+                        }</span>
+
                       </div>
                     </div>
 
@@ -89,10 +129,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Prenom</label>
                         <input type="text" className="form-control" value={prenom} name="prenom" placeholder="Entrer prenom" onChange={(e) => setPrenom(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "prenom").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "prenom").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -103,10 +143,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Télephone</label>
                         <input type="number" className="form-control" value={numTel} name="numTel" placeholder="Entrer Num Tel" onChange={(e) => setNumTel(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "numTel").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "numTel").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
 
@@ -114,10 +154,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Email</label>
                         <input type="email" className="form-control" value={email} name="email" placeholder="Entrer Adresse Email" onChange={(e) => setEmail(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "email").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "email").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -128,20 +168,19 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Adresse</label>
                         <input type="text" className="form-control" value={adresse} name="adresse" placeholder="Entrer Adresse" onChange={(e) => setAdresse(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "adresse").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "adresse").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label >Département</label>
-                        <select type="text" className="form-control" value={départment} name="département" placeholder="Entrer Département" onChange={(e) => setDépartment(e.target.value)}>
-                          <option value="Marketing">Marketing</option>
-                          <option value="Informatique">Informatique</option>
-                          <option value="RH">RH</option>
+                        <select type="text" className="form-control" value={depart} placeholder="Entrer Département" onChange={e => setDepart(e.target.value)} >
+                          {dep.map((e, i) => (<option key={i}>{e}</option>))}
+
                         </select>
                       </div>
                     </div>
@@ -152,7 +191,7 @@ const EditUser = () => {
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label >Contart</label>
-                        <select type="text" className="form-control" value={contart} name="contrat" placeholder="Entrer Contrat " onChange={(e) => setContart(e.target.value)} >
+                        <select type="text" className="form-control" value={contrat} name="contrat" placeholder="Entrer Contrat " onChange={(e) => setContrat(e.target.value)} >
                           <option value="CDD">CDD</option>
                           <option value="CDI">CDI</option>
                         </select>
@@ -163,10 +202,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Droit Congé</label>
                         <input type="text" className="form-control" value={droitCongé} name="droitCongé " placeholder="Enter Droit Congé" onChange={(e) => setDroitCongé(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "droitCongé").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "droitCongé").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -188,10 +227,10 @@ const EditUser = () => {
                       <div className="form-group">
                         <label >Mot de passe</label>
                         <input type="password" className="form-control" value={motDePasse} name="motDePasse " placeholder="Entrer Mot de passe" onChange={(e) => setMotDePasse(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "motDePasse").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "motDePasse").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -201,21 +240,21 @@ const EditUser = () => {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <label >Salaire</label>
                       <input type="number" className="form-control" value={salaire} name="salaire" placeholder="Entrer montant salaire" onChange={(e) => setSalaire(e.target.value)} />
-                      <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "salaire").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                      <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                        errors.errors.filter(err => err.param === "salaire").map((msg) => msg.msg)
+                        : ""
+                      }</span>
                     </div>
                   </div>
                   <hr />
 
                 </form>
-                  
-                    <div className="col-sm-12">
-                      <button onClick={onSubmit} className="btn btn-outline-primary"> Modifier</button>
-                    </div>
-                   
-                  
+
+                <div className="col-sm-12">
+                  <button onClick={onSubmit} className="btn btn-outline-primary"> Modifier</button>
+                </div>
+
+
               </div>
             </div>
           </div>
@@ -223,8 +262,8 @@ const EditUser = () => {
       </div>
     </div >
   );
-  
-  
+
+
 }
 
 export default EditUser;

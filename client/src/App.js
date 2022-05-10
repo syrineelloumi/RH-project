@@ -16,6 +16,8 @@ import Login from './components/Login';
 import EditUser from './components/EditUser';
 import Profile from './components/Profile';
 import NavBar from './components/NavBar';
+import Photo from './components/Photo';
+
 
 
 function App() {
@@ -30,6 +32,9 @@ function App() {
         <Route  path="/editUser/:id" element={<EditUser/>} />
         <Route  path="/profile" element={<Profile/>} />
         <Route  path="/navbar" element={<NavBar/>} />
+        <Route  path="/photo" element={<Photo/>} />
+        
+        
         </Routes>
       </BrowserRouter>
       
