@@ -5,6 +5,7 @@ const user = require('./routers/user')
 // const passport = require('passport')
 const departement = require('./routers/departement')
 const Présence = require('./routers/Présence')
+const Congé = require('./routers/Congé')
 
 
 
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use('/user', user)
 app.use('/departement',departement)
 app.use('/presence',Présence)
+app.use('/conge',Congé)
 app.listen(PORT,(err)=>
 err?console.log(err):console.log("server is started"))
 

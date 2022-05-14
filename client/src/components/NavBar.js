@@ -27,7 +27,7 @@ function NavBar() {
 
     <nav className="main-breadcrumb" >
       <ol className="breadcrumb">
-        <li className="item mx-auto"><Link to="">
+        <li className="item mx-auto"><Link to="/Profile">
           <i className="bi bi-person-fill" style={{ fontSize: "1rem", color: "black" }}></i>
           <p style={{ color: "black", fontSize: "12px" }}>Profile</p>
         </Link>
@@ -37,7 +37,7 @@ function NavBar() {
           <p style={{ color: "black", fontSize: "12px" }}>Congé</p>
         </Link>
         </li>
-        <li className="item mx-auto"><Link to="index.html">
+        <li className="item mx-auto"><Link to="/Calendar">
           <i className="bi bi-calendar2-check" style={{ fontSize: "1rem", color: "black" }}></i>
           <p style={{ color: "black", fontSize: "12px" }}>Pointage</p>
         </Link>
@@ -51,7 +51,7 @@ function NavBar() {
           <i className="bi bi-gear" style={{ fontSize: "1rem", color: "black" }} data-toggle="dropdown"></i>
 
 
-          <ul className="dropdown-menu" style={{ width: "12pc" }}>
+          <ul className="dropdown-menu" style={{ width: "12pc" , marginRight:"10pc"}}>
             <li>
               <i className="bi bi-key" onClick={handleOpen}>Changer mot de passe</i>
               <Modal

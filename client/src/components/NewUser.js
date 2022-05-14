@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createUser } from '../redux/action';
+import { createUser, getAllUsers } from '../redux/action';
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -23,7 +23,7 @@ const NewUser = () => {
 
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
-  const [email, setEmail,] = useState('');
+  const [email, setEmail] = useState('');
   const [numTel, setNumTel] = useState('');
   const [adresse, setAdresse] = useState('');
 
@@ -82,6 +82,7 @@ const uploadImage = async() =>{
 
 
   }
+  dispatch(getAllUsers)
 
 
   console.log({

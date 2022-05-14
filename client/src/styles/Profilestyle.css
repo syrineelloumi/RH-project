@@ -144,6 +144,7 @@ table {
 
 .bis{
     color: #08090a;
+    cursor: pointer;
    
     
 }
@@ -155,6 +156,7 @@ table {
 }
 .bis:hover{
     color: rgb(158, 8, 8);
+    
 }
 .bim:hover{
     color: rgb(83, 83, 201);

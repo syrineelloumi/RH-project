@@ -20,16 +20,20 @@ exports.addPresence = async (req, res) => {
   let user = await User.findById(decoded.id);
   let userID = user.id;
   // console.log(userID);
-  let {datePrésence:aaa, état, lieu } = req.body;
-  let date1=req.body.datePrésence.split("-");
-  let dattt=new Date(date1[0], date1[1] - 1, date1[2] ); 
-  console.log(dattt);
+  let {datePrésence, état, lieu } = req.body;
+  // let date1=req.body.datePrésence.split("-");
+  // let date10= (parseInt(date1[0]));
+  // let date11= (parseInt(date1[1]));
+  // let date12= (parseInt(date1[2]));
+  // let dattt=new Date(date10, date11 - 1, date12  ); 
+
+  // console.log(typeof datePrésence);
   
   
   try {
     let newPrésence = new Présence({
 
-      datePrésence: dattt,
+      datePrésence:datePrésence,
       état: état,
       lieu: lieu,
       userId: userID
@@ -52,7 +56,7 @@ exports.deletePresence=async(req,res)=>{
   let isOwner=thePresence.userId;
   
   if (isOwner!==userID) {
-    res.status(400).json({ msg: "you cannot delete this presence" });
+    res.status(400).json({ msg: "Vous ne pouvez pas supprimer cette présence !" });
   }
   try {
     await Présence.findByIdAndDelete(req.params.id)
@@ -90,7 +94,7 @@ exports.updatePresence = async (req, res) => {
   
   try {
       await Présence.findByIdAndUpdate(req.params.id, { ...req.body })
-      res.send('mise a jour Présence avec succes!')
+      res.send('mise a jour Présence avec succés!')
 
   }
   catch (error) {

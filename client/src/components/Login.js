@@ -129,7 +129,7 @@ const Login = () => {
             </Box>
           </Grid>
         </Grid>
-      </ThemeProvider>)
+      </ThemeProvider>
 
     </div>
   );

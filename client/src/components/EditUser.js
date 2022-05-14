@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { editUser, getDepartements } from '../redux/action';
 import axios from "axios";
 
@@ -66,13 +66,14 @@ const EditUser = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(editUser({id:userEdit._id,
-      nom: nom, prenom: prenom, email: email, numTel: numTel, adresse:adresse, département: département
-      , contrat: contrat, droitCongé: droitCongé, role: role, motDePasse: motDePasse, salaire: salaire,image:url
+    dispatch(editUser({
+      id: userEdit._id,
+      nom: nom, prenom: prenom, email: email, numTel: numTel, adresse: adresse, département: département
+      , contrat: contrat, droitCongé: droitCongé, role: role, motDePasse: motDePasse, salaire: salaire, image: url
     }))
 
   }
-console.log(nom);
+  console.log(nom);
 
   return (
 
@@ -87,7 +88,14 @@ console.log(nom);
         <nav className="nav-bar">
           <div className="nav-bar">
             <div className="icon">
-              <i className="bi bi-arrow-left" style={{ fontSize: "3rem", color: "black" }}></i>
+            {user.role === "Employé" ? (
+                      <Link to={"/profile"}>
+                      <i className="bi bi-arrow-left" style={{ fontSize: "2rem", color: "black" }}></i>
+                    </Link>
+                    ) : (
+            <Link to={"/userList"}>
+                    <i className="bi bi-arrow-left" style={{ fontSize: "2rem", color: "black" }}></i>
+                  </Link>)}
             </div>
             <p className="text-center"> Modifier Utilisateur </p>
           </div>
@@ -99,7 +107,7 @@ console.log(nom);
             <div className="card">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
-                  <img src={image} alt="Admin" className="rounded-circle" width="150" />
+                  <img src={image} alt="" className="rounded-circle" width="150" />
                   <input type="file" accept='image/png , image/jpg' style={{ fontSize: "12px" }} onChange={(e) => setFile(e.target.files[0])}></input>
                   <button onClick={uploadImage} style={{ fontSize: "12px" }} >enregistrer</button>
                 </div>
@@ -175,76 +183,133 @@ console.log(nom);
                       </div>
                     </div>
 
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label >Département</label>
-                        <select type="text" className="form-control" value={depart} placeholder="Entrer Département" onChange={e => setDepart(e.target.value)} >
-                          {dep.map((e, i) => (<option key={i}>{e}</option>))}
-
-                        </select>
+                    {user.role === "Employé" ||user.role==="Responsable" ? (
+                      <div style={{ marginLeft: "11pc" }}>
+                        <label >Département</label><br />
+                        <div style={{ background: "white" , width:"10pc"  }}>
+                          {`${user.département}`}
+                        </div>
                       </div>
-                    </div>
+
+                    ) : (
+
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label >Département</label>
+                          <select type="text" className="form-control" value={depart} placeholder="Entrer Département" onChange={e => setDepart(e.target.value)} >
+                            {dep.map((e, i) => (<option key={i}>{e}</option>))}
+
+                          </select>
+                        </div>
+                      </div>)
+                    }
                   </div>
+
                   <hr />
 
                   < div className="row ml-6">
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label >Contart</label>
-                        <select type="text" className="form-control" value={contrat} name="contrat" placeholder="Entrer Contrat " onChange={(e) => setContrat(e.target.value)} >
-                          <option value="CDD">CDD</option>
-                          <option value="CDI">CDI</option>
-                        </select>
+                    {user.role === "Employé" || user.role==="Responsable" ? (
+                      <div style={{ marginLeft: "11pc", marginRight: "18pc" }}>
+                        <label >Contart</label><br />
+                        <div style={{ background: "white" , width:"10pc" }}>
+                          {`${user.contrat}`}
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label >Droit Congé</label>
-                        <input type="text" className="form-control" value={droitCongé} name="droitCongé " placeholder="Enter Droit Congé" onChange={(e) => setDroitCongé(e.target.value)} />
-                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
-                          errors.errors.filter(err => err.param === "droitCongé").map((msg) => msg.msg)
-                          : ""
-                        }</span>
+                    ) : (
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label >Contart</label>
+                          <select type="text" className="form-control" value={contrat} name="contrat" placeholder="Entrer Contrat " onChange={(e) => setContrat(e.target.value)} >
+                            <option value="CDD">CDD</option>
+                            <option value="CDI">CDI</option>
+                          </select>
+                        </div>
+                      </div>)}
+
+                    {user.role === "Employé" || user.role==="Responsable" ? (
+                      <div style={{ marginLeft: "5pc" }}>
+                        <label >Droit Congé</label><br />
+                        <div style={{ background: "white" , width:"10pc" }}>
+                          {`${user.droitCongé}`}
+                        </div>
                       </div>
-                    </div>
+
+                    ) : (
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label >Droit Congé</label>
+                          <input type="text" className="form-control" value={droitCongé} name="droitCongé " placeholder="Enter Droit Congé" onChange={(e) => setDroitCongé(e.target.value)} />
+                          <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                            errors.errors.filter(err => err.param === "droitCongé").map((msg) => msg.msg)
+                            : ""
+                          }</span>
+                        </div>
+                      </div>)}
                   </div>
                   <hr />
 
                   <div className="row ml-6">
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label >Role</label>
-                        <select type="text" className="form-control" value={role} name="role" placeholder="Entrer Role" onChange={(e) => setRole(e.target.value)} >
-                          <option value="Admin">Admin</option>
-                          <option value="Responsable">Resonsable</option>
-                          <option value="Employé">Employé</option>
-                        </select>
+                    {user.role === "Employé" || user.role==="Responsable" ? (
+                      <div style={{ marginLeft: "11pc", marginRight: "7pc" }}>
+                        <label >Role</label><br />
+                        <div style={{ background: "white" , width:"10pc" }}>
+                          {`${user.role}`}
+                        </div>
                       </div>
-                    </div>
 
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label >Mot de passe</label>
-                        <input type="password" className="form-control" value={motDePasse} name="motDePasse " placeholder="Entrer Mot de passe" onChange={(e) => setMotDePasse(e.target.value)} />
-                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
-                          errors.errors.filter(err => err.param === "motDePasse").map((msg) => msg.msg)
-                          : ""
-                        }</span>
+                    ) : (
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label >Role</label>
+                          <select type="text" className="form-control" value={role} name="role" placeholder="Entrer Role" onChange={(e) => setRole(e.target.value)} >
+                            <option value="Admin">Admin</option>
+                            <option value="Responsable">Resonsable</option>
+                            <option value="Employé">Employé</option>
+                          </select>
+                        </div>
+                      </div>)
+                    }
+                    {user.role === "Employé" || user.role==="Responsable" ? (
+                      <div style={{ marginLeft: "16pc", marginRight: "10pc" }}>
+                        <label >Mot de passe</label><br />
+                        <div style={{background:"white" , width:"10pc"}}>
+                          *****
+                        </div>
                       </div>
-                    </div>
+
+                    ) : (
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div className="form-group">
+                          <label >Mot de passe</label>
+                          <input type="password" className="form-control" value={motDePasse} name="motDePasse " placeholder="Entrer Mot de passe" onChange={(e) => setMotDePasse(e.target.value)} />
+                          <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                            errors.errors.filter(err => err.param === "motDePasse").map((msg) => msg.msg)
+                            : ""
+                          }</span>
+                        </div>
+                      </div>)}
                   </div>
                   <hr />
 
                   <div className="row">
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                      <label >Salaire</label>
-                      <input type="number" className="form-control" value={salaire} name="salaire" placeholder="Entrer montant salaire" onChange={(e) => setSalaire(e.target.value)} />
-                      <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
-                        errors.errors.filter(err => err.param === "salaire").map((msg) => msg.msg)
-                        : ""
-                      }</span>
-                    </div>
+                    {user.role === "Employé" || user.role==="Responsable" ? (
+                      <div style={{ marginLeft: "27pc" }}>
+                        <label >Salaire</label><br />
+                        <div style={{background:"white" , width:"10pc"}}>
+                          {`${user.salaire}`}
+                        </div>
+                      </div>
+
+                    ) : (
+                      <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <label >Salaire</label>
+                        <input type="number" className="form-control" value={salaire} name="salaire" placeholder="Entrer montant salaire" onChange={(e) => setSalaire(e.target.value)} />
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "salaire").map((msg) => msg.msg)
+                          : ""
+                        }</span>
+                      </div>)}
                   </div>
                   <hr />
 

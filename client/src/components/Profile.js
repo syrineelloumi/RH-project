@@ -29,9 +29,11 @@ const Profile = () => {
                         <div className="card">
                             <div className="card-body-profil">
                                 <div className="d-flex flex-column align-items-center text-center mt-5">
-                                    <img src={user.image} alt="Admin" className="rounded-circle" width="150" />
+                                    <img src={user.image} alt="" className="rounded-circle" width="150" />
                                     <div className="mt-5">
-                                        <h4>{`BIENVENUE ${user.nom} ${user.prenom}`}</h4>
+
+                                        <h4> BIENVENUE <br/>
+                                            {` ${user.nom} ${user.prenom}`}</h4>
                                         
                                     </div>
                                 </div>

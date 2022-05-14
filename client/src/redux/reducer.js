@@ -1,4 +1,4 @@
-import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, CREATE_USER, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
+import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, CREATE_USER, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
 
 
 let init = {
@@ -9,6 +9,8 @@ let init = {
   isAuth: false,
   departementsList: null,
   token: localStorage.getItem("token"),
+  pointage:null,
+  listPointage:null
 
 
 };
@@ -18,6 +20,7 @@ export const reducer = (state = init, { type, payload }) => {
     case GET_USERS:
     case CREATE_USER:
       case ADD_DEPART:
+        case ADD_POINT:
       return {
         ...state,
         usersList: payload,
@@ -117,6 +120,7 @@ export const reducer = (state = init, { type, payload }) => {
       errors: null,
        
     };
+   
 
 
     default:

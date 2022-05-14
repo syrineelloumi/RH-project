@@ -8,7 +8,7 @@ const présenceSchema = new Schema({
     lieu:{
         type:String,
         default:'Présentiel',
-        roles:['Présentiel' , 'À distance' ]
+        lieu:['Présentiel' , 'À distance' ]
     },
     userId : String,
 

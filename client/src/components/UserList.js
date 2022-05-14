@@ -136,7 +136,8 @@ const UserList = () => {
                 </span>
 
                 <span className='span' onClick={() => {
-                  dispatch(deleteUser(e._id));
+                  
+                  dispatch(deleteUser(e._id) );
                   dispatch(getAllUsers());
                 }}><i className="bis bi-trash" >Supprimer</i
                 ></span>

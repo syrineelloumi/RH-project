@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
+import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, ADD_POINT_FAIL, ADD_POINT_SUCCESS, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
 
 
 export const createUser = (newUser) => async (dispatch) => {
@@ -19,6 +19,10 @@ export const createUser = (newUser) => async (dispatch) => {
 
     });
     console.log("res", res);
+    alert("Ajout avec succés!")
+    window.location.href = "/userList"
+    
+
   }catch (error) {
   dispatch({
     type: CREATE_USER__FAIL,
@@ -94,7 +98,10 @@ export const userLogin = (user) => async (dispatch) => {
       type: LOGIN_FAIL,
       payload: error.response.data,
     });
+    // alert(error.response.data);
+    
   }
+  
 };
 
 
@@ -113,6 +120,9 @@ export const editUser = (editUser) => async (dispatch) => {
       type: EDIT_USER_SUCCESS,
       payload: res.data,
     });
+    alert("mise à jour avec succès" )
+    
+    
   } catch (error) {
     dispatch({
       type: EDIT_USER_FAIL,
@@ -138,6 +148,7 @@ export const deleteUser = (id) => async (dispatch) => {
       type: DELETE_USER_SUCCESS,
       payload: res.data,
     });
+    alert("suppression avec succès!" )
   } catch (error) {
     dispatch({
       type: DELETE_USER_FAIL,
@@ -189,7 +200,9 @@ export const getProfile = () => async (dispatch) => {
     dispatch({
       type: GET_PROFILE_SUCCESS,
       payload: res.data,
+
     });
+    console.log(res.data);
   } catch (error) {
     dispatch({
       type: GET_PROFILE_FAIL,
@@ -222,15 +235,41 @@ export const addDepart = (newDepart) => async (dispatch) => {
       payload: res.data,
 
     });
+    alert("ajout avec succès" )
+    window.location.href = "/userList"
     
   }catch (error) {
   dispatch({
     type: ADD_DEPART_FAIL,
     payload: error.response.data,
   });
+  // alert(error.response.data)
   }
 }
 
+export const addPoint = (newPoint) => async (dispatch) => {
+  dispatch({ type: ADD_POINT });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  try {
+    const res = await axios.post("/presence/addPresence", newPoint, config);
+    dispatch({
+      type: ADD_POINT_SUCCESS,
+      payload: res.data,
+
+    });
+    alert("ajout avec succès" )
+  }catch (error) {
+  dispatch({
+    type: ADD_POINT_FAIL,
+    payload: error.response.data,
+  });
+  }
+}
 
 
 
