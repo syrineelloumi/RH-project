@@ -9,7 +9,10 @@ import { useDispatch } from "react-redux";
 
 
 // class AddEventModal extends Component {
-const AddEventModal = () => {
+const AddEventModal = ({ toggleModal, selectedDate }) => {
+  // new Date(unixTime*1000);
+  console.log(new Date(selectedDate.setHours(7)));
+  // console.log(selectedDate.setHours(7));
   // const constructor(props) {
   //   super(props);
   //   this.state = {
@@ -60,22 +63,22 @@ const AddEventModal = () => {
 
   const [open, setOpen] = React.useState(true);
   // const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => { setOpen(false); toggleModal() };
   //const { time } = this.state.eventToEdit;
   const dispatch = useDispatch();
   const [datePrésence, setDatePrésence] = useState('');
   const [état, setÉtat] = useState('');
   const [lieu, setLieu] = useState('');
-
+  console.log("etat", état);
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(addPoint({
 
-      datePrésence:datePrésence,
+      datePrésence: new Date(selectedDate.setHours(7)),
       état: état,
       lieu: lieu,
-      
-     
+
+
     }))
     setDatePrésence('')
     setÉtat('')
@@ -103,12 +106,12 @@ const AddEventModal = () => {
           <form onSubmit={onSubmit} >
 
             <div className="form-check" style={{ marginLeft: "230px" }} >
-              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value={état} onChange={(e) => setÉtat(e.target.value)} />
+              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Présent" onChange={(e) => setÉtat(e.target.value)} />
               <label className="form-check-label" htmlFor="flexRadioDefault1">
                 Présent
               </label>
 
-              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" style={{ marginLeft: "80px" }} value={état} onChange={(e) => setÉtat(e.target.value)} />
+              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" style={{ marginLeft: "80px" }} value="Absent" onChange={(e) => setÉtat(e.target.value)} />
               <label className="form-check-label" htmlFor="flexRadioDefault2" style={{ marginLeft: "100px" }}>
                 Absent
               </label>
@@ -133,73 +136,32 @@ const AddEventModal = () => {
                 />
               </div> */}
 
-            <div>
-              <TextField
-                //required
-                //id={time}
-                type="time"
-                //   defaultValue="07:30"
-                label="Temps Début"
-                //defaultValue={time}
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true
-                }}
-                inputProps={{
-                  step: 300 // 5 min
-                }}
-              // onChange={e => this.setTime(e.target.value)}
-              />
-              <TextField
-                //required
-                //id={time}
-                type="time"
-                // defaultValue="07:30"
-                label="Fin"
-                //defaultValue={time}
-                variant="outlined"
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
 
-
-                }}
-                inputProps={{
-                  step: 300 // 5 min
-
-                }}
-
-
-              // onChange={e => this.setTime(e.target.value)}
-              />
-            </div>
-            <div className="event-button" >
-              <center >
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                // onClick={submitForm}
-                >
-                  Enregistrer
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  // onClick={this.submitForm}
-                  style={{ marginLeft: "20px" }}
-                >
-                  supprimer
-                </Button>
-              </center>
-            </div>
-          </form>
+       
+        <div className="event-button" >
+          <center >
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+            // onClick={submitForm}
+            >
+              Enregistrer
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              // onClick={this.submitForm}
+              style={{ marginLeft: "20px" }}
+            >
+              supprimer
+            </Button>
+          </center>
         </div>
-      </Modal>
+      </form>
     </div>
+      </Modal >
+    </div >
   );
 }
 

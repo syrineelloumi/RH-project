@@ -46,7 +46,7 @@ FONT IMPORTS
   color: var(--text-color);
   background: var(--bg-color);
   position: relative;
-} */
+}  */
 
 /* header {
   display: block;
@@ -120,7 +120,7 @@ main {
   border: 1px solid var(--border-color);
 }
 
-.calendar .header {
+ .header {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 115%;
@@ -130,26 +130,26 @@ main {
   color: black;
 }
 
-.calendar .header .icon {
+.header .icon {
   cursor: pointer;
   transition: 0.15s ease-out;
 }
 
-.calendar .header .icon:hover {
+.header .icon:hover {
   transform: scale(1.75);
   transition: 0.25s ease-out;
   color: var(--main-color);
 }
 
-.calendar .header .icon:first-of-type {
+.header .icon:first-of-type {
   margin-left: 1em;
 }
 
-.calendar .header .icon:last-of-type {
+ .header .icon:last-of-type {
   margin-right: 1em;
 }
 
-.calendar .days {
+.days {
   text-transform: uppercase;
   /*font-weight: 400;
   color: var(--text-color-light);*/
@@ -158,7 +158,7 @@ main {
   border-bottom: 1px solid var(--border-color);
 }
 
-.calendar .body .cell {
+.cell {
   position: relative;
   height: 9em;
   border-right: 1px solid var(--border-color);
@@ -168,29 +168,29 @@ main {
   transition: 0.25s ease-out;
 }
 
-.calendar .body .cell:hover {
+ .cell:hover {
   background: var(--bg-color);
   transition: 0.5s ease-out;
 }
 
-.calendar .body .selected {
+.selected {
   border-image-slice: 1;
   background-color: #e2e8f0;
 }
 
-.calendar .body .row {
+ .body .row {
   border-bottom: 1px solid var(--border-color);
 }
 
-.calendar .body .row:last-child {
+ .body .row:last-child {
   border-bottom: none;
 }
 
-.calendar .body .cell:last-child {
+ .body .cell:last-child {
   border-right: none;
 }
 
-.calendar .body .cell .number {
+ .body .cell .number {
   position: absolute;
   font-size: 82.5%;
   line-height: 1;
@@ -199,12 +199,12 @@ main {
   font-weight: 700;
 }
 
-.calendar .body .disabled {
+ .body .disabled {
   color: var(--text-color-light);
   pointer-events: none;
 }
 
-.calendar .body .cell .bg {
+ .body .cell .bg {
   font-weight: 700;
   line-height: 1;
   color: var(--main-color);
@@ -217,13 +217,13 @@ main {
   letter-spacing: -0.07em;
 }
 
-.calendar .body .cell:hover .bg,
-.calendar .body .selected .bg {
+ .body .cell:hover .bg,
+ .body .selected .bg {
   opacity: 0.05;
   transition: 0.5s ease-in;
 }
 
-.calendar .body .col {
+ .body .col {
   flex-grow: 0;
   flex-basis: calc(100% / 7);
   width: calc(100% / 7);

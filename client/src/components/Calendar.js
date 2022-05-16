@@ -14,7 +14,7 @@ import {
     subMonths
 } from "date-fns";
 import AddEventModal from "./Pointage";
-import "../styles/Calendar.css";
+// import "../styles/Calendar.css";
 import NavBar from "./NavBar";
 
 const EVENT_LIMIT = 5;
@@ -30,6 +30,7 @@ class Calendar extends Component {
             eventToEdit: {}
         };
     }
+    
 
     componentDidMount() {
         let events =
@@ -231,7 +232,6 @@ class Calendar extends Component {
             });
         }
     };
-
     render() {
         const { showEventModal, eventToEdit } = this.state;
         return (

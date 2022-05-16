@@ -149,5 +149,37 @@ exports.login = async (req, res) => {
 }
 
 
+exports.UpdateMp = async (req, res) => {
+    let { motDePasse} = req.body;
+    let user = await User.findOne({ id: req.params.id })
+
+    let isExist = await user.motDePasse;
+    if (!isExist) {
+        res.status(400).json({ msg: "Mot de passe actuel incorrect" });
+    } else {
+
+        try {
+            let editedUser= await User.findByIdAndUpdate(req.params.id,{...req.body})
+            let salt = await bc.genSalt(10);
+            let hash = await bc.hashSync(motDePasse, salt);
+            editedUser.motDePasse = hash;
+            await editedUser.save();
+            
+              let payload = {
+                id: editedUser._id,
+                nom: editedUser.nom,
+                role: editedUser.role
+    
+          }
+            let token = jwt.sign(payload, secret);
+            res.send({editedUser,token})
+            } catch (error) {
+                console.log(error.message)
+            }
+    }
+
+
+}
+
 
 

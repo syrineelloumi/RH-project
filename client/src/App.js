@@ -18,6 +18,7 @@ import Profile from './components/Profile';
 import NavBar from './components/NavBar';
 import Photo from './components/Photo';
 import Calendar from './components/Calendar';
+import Calendrier from './components/Calendrier';
 
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route  path="/navbar" element={<NavBar/>} />
         <Route  path="/photo" element={<Photo/>} />
         <Route  path="/calendar" element={<Calendar/>} />
+        <Route  path="/cal" element={<Calendrier/>} />
         
         
         </Routes>

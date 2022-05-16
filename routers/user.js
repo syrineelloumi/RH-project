@@ -1,5 +1,5 @@
 let express = require('express')
-const{getUsers,getUser,createUser,deleteUser,updateUser, login, getUserByNom}= require('../controllers/user.controller')
+const{getUsers,getUser,createUser,deleteUser,updateUser, login, getUserByNom, UpdateMp}= require('../controllers/user.controller')
 
 //const  authorization = require('../middleware/auth')
 const  auth  = require('../middleware/auth')
@@ -17,4 +17,6 @@ router.post('/createUser',createUserControls(),validator,createUser)
 router.delete('/deleteUser/:id',auth ,deleteUser)
 router.put('/updateUser/:id',auth,createUserControls(),validator   ,updateUser)
 router.post('/login',login)
+router.put('/UpdateMp/:id',UpdateMp)
+
 module.exports=router

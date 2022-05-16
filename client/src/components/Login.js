@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import { userLogin } from '../redux/action';
-
+import logo from "./logo-planify4-_1_.jpeg"
 
 
 const theme = createTheme();
@@ -47,20 +47,22 @@ const Login = () => {
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
-          <Grid
+          <img src={logo} alt='imag'  style={{ width: "300px", height: "180px" , marginLeft:"290px" ,  marginRight:"290px" , marginTop:"200px"}}/>
+          
+          {/* <Grid
             item
             xs={false}
             sm={4}
             md={7}
             sx={{
-              backgroundImage: 'url(https://source.unsplash.com/random)',
+              backgroundImage: 'logo.jpg',
               backgroundRepeat: 'no-repeat',
               backgroundColor: (t) =>
                 t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
               backgroundSize: 'cover',
               backgroundPosition: 'center',
             }}
-          />
+          /> */}
 
           <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
 

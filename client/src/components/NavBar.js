@@ -37,7 +37,7 @@ function NavBar() {
           <p style={{ color: "black", fontSize: "12px" }}>Congé</p>
         </Link>
         </li>
-        <li className="item mx-auto"><Link to="/Calendar">
+        <li className="item mx-auto"><Link to="/Cal">
           <i className="bi bi-calendar2-check" style={{ fontSize: "1rem", color: "black" }}></i>
           <p style={{ color: "black", fontSize: "12px" }}>Pointage</p>
         </Link>

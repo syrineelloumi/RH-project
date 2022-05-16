@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, ADD_POINT_FAIL, ADD_POINT_SUCCESS, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
+import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, ADD_POINT_FAIL, ADD_POINT_SUCCESS, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, 
+  EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS,EDIT_MP, EDIT_MP_SUCCESS , EDIT_MP_FAIL , GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, GET_POINT, GET_POINT_SUCCESS, GET_POINT_FAIL } from "./actionTypes";
 
 
 export const createUser = (newUser) => async (dispatch) => {
@@ -98,8 +99,8 @@ export const userLogin = (user) => async (dispatch) => {
       type: LOGIN_FAIL,
       payload: error.response.data,
     });
-    // alert(error.response.data);
-    
+    alert(error.response.data.msg);
+    console.log(error.response.data.msg);
   }
   
 };
@@ -271,6 +272,58 @@ export const addPoint = (newPoint) => async (dispatch) => {
   }
 }
 
+
+export const UpdateMp = (editUser) => async (dispatch) => {
+  dispatch({ type: EDIT_MP});
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+        Authorization: token,
+    }
+  };
+  try {
+    const res = await axios.put(`/user/UpdateMp/${editUser.id}`,editUser,config);
+    
+    dispatch({
+      type: EDIT_MP_SUCCESS,
+      payload: res.data,
+    });
+    alert("mise à jour avec succès" )
+    
+    
+  } catch (error) {
+    dispatch({
+      type: EDIT_MP_FAIL,
+      payload: error.response.data,
+    });
+    console.log("erreur", error);
+  }
+};
+
+export const getPoint = () => async (dispatch) => {
+  dispatch({
+    type: GET_POINT,
+  });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  try {
+    let res = await axios.get("/presence/getPresences", config);
+    dispatch({
+      type: GET_POINT_SUCCESS,
+      payload: res.data,
+    });
+    
+  } catch (error) {
+    dispatch({
+      type: GET_POINT_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
 
 
 

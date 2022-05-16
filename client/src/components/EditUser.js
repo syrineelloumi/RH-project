@@ -69,7 +69,7 @@ const EditUser = () => {
     dispatch(editUser({
       id: userEdit._id,
       nom: nom, prenom: prenom, email: email, numTel: numTel, adresse: adresse, département: département
-      , contrat: contrat, droitCongé: droitCongé, role: role, motDePasse: motDePasse, salaire: salaire, image: url
+      , contrat: contrat, droitCongé: droitCongé, role: role, motDePasse: motDePasse, salaire: salaire, image: url?url:image
     }))
 
   }
