@@ -99,12 +99,12 @@ const UserList = () => {
         </Link>
         </li>
         <li className="item mx-auto" style={{top:"-95%"}}><Link to={"/listConge"}>
-          <i class="bi bi-card-checklist" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande Congé</p></i>
+          <i class="bi bi-list-check" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande Congé</p></i>
           
         </Link>
         </li>
         <li className="item mx-auto"  style={{top:"-95%"}}><Link to="/Cal">
-          <i className="bi bi-calendar2-check" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande HS</p></i>
+          <i class="bi bi-list-check" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande HS</p></i>
          
         </Link>
         </li>

@@ -16,7 +16,7 @@ import axios from "axios";
 const NewUser = () => {
 
   const { departementsList, errors } = useSelector((state) => state);
-  
+
 
   const dep = departementsList.map((el) => el.nomDépartment);
   const [depart, setDepart] = React.useState(dep[0]);
@@ -37,20 +37,20 @@ const NewUser = () => {
   const dispatch = useDispatch();
   // const [errors , setErrors]=useState({});
 
-  const[file , setFile]=useState(null); 
-  const[url , setUrl]=useState("");
-// cloudName: etudiante
-// presetName: rhApplication
-// lien api: https://api.cloudinary.com/v1_1/
+  const [file, setFile] = useState(null);
+  const [url, setUrl] = useState("");
+  // cloudName: etudiante
+  // presetName: rhApplication
+  // lien api: https://api.cloudinary.com/v1_1/
 
-const uploadImage = async() =>{
-  const form = new FormData()
-  form.append ('file',file)
-  form.append("upload_preset" , "rhApplication");
- await axios.post("https://api.cloudinary.com/v1_1/etudiante/upload",form)
- .then((result)=>setUrl(result.data.secure_url));
+  const uploadImage = async () => {
+    const form = new FormData()
+    form.append('file', file)
+    form.append("upload_preset", "rhApplication");
+    await axios.post("https://api.cloudinary.com/v1_1/etudiante/upload", form)
+      .then((result) => setUrl(result.data.secure_url));
 
-}
+  }
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -66,7 +66,7 @@ const uploadImage = async() =>{
       role: role,
       motDePasse: motDePasse,
       salaire: salaire,
-      image:url,
+      image: url,
     }))
     setNom('')
     setPrenom('')
@@ -98,7 +98,7 @@ const uploadImage = async() =>{
     role: role,
     motDePasse: motDePasse,
     salaire: salaire,
-    image:image,
+    image: image,
   });
   // console.log(errors.errors.filter(err => err.param === "nom").map((msg) => msg.msg));
 
@@ -112,16 +112,15 @@ const uploadImage = async() =>{
 
         <nav className="nav-bar">
           <div className="nav-bar">
-            <div><span className="icon">
-              <Link to={"/userList"}>
-                <i className="bi bi-arrow-left" style={{ fontSize: "3rem", color: "black" }}></i>
-              </Link>
-            </span></div>
-            <p className="text-center">Ajouter Utilisateur </p>
 
+            <Link to={"/userList"}>
+              <i class="bi bi-arrow-left-short" style={{ marginRight: "75pc", fontSize: "2rem", color: "black" }}></i>
+            </Link>
+
+            <h2 className="text-center" style={{ marginTop: -30 }}>Ajouter Utilisateur </h2>
 
           </div>
-        </nav>
+        </nav><br/>
 
 
         <div className="column gutters-sm">
@@ -130,8 +129,8 @@ const uploadImage = async() =>{
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   <img src={url} alt="" className="rounded-circle" width="150px" height="150px" />
-                  <input  type="file"  accept='image/png , image/jpg' style={{fontSize:"12px" , width:"15pc"}} onChange={(e)=>setFile(e.target.files[0])}></input>
-                  <button onClick={uploadImage} style={{fontSize:"12px"}} >enregistrer</button>
+                  <input type="file" accept='image/png , image/jpg' style={{ fontSize: "12px", width: "15pc" }} onChange={(e) => setFile(e.target.files[0])}></input>
+                  <button onClick={uploadImage} style={{ fontSize: "12px" }} >enregistrer</button>
                 </div>
               </div>
             </div>
@@ -147,13 +146,13 @@ const uploadImage = async() =>{
                       <div className="form-group">
 
                         <label >Nom</label>
-                        <input type="text" className="form-control"  value={nom} name="nom" placeholder="Entrer Nom " onChange={(e) => setNom(e.target.value)}  />
-                       
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "nom").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
-                       
+                        <input type="text" className="form-control" value={nom} name="nom" placeholder="Entrer Nom " onChange={(e) => setNom(e.target.value)} />
+
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "nom").map((msg) => msg.msg)
+                          : ""
+                        }</span>
+
 
                       </div>
                     </div>
@@ -162,10 +161,10 @@ const uploadImage = async() =>{
                       <div className="form-group">
                         <label >Prénom</label>
                         <input type="text" className="form-control" value={prenom} name="prenom" placeholder="Entrer Prénom" onChange={(e) => setPrenom(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "prenom").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "prenom").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -176,10 +175,10 @@ const uploadImage = async() =>{
                       <div className="form-group">
                         <label >Télephone</label>
                         <input type="number" className="form-control" value={numTel} name="numTel" placeholder="Entrer Num Tel" onChange={(e) => setNumTel(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "numTel").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "numTel").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
 
@@ -187,10 +186,10 @@ const uploadImage = async() =>{
                       <div className="form-group">
                         <label >Email</label>
                         <input type="email" className="form-control" value={email} name="email" placeholder="Entrer Adresse Email" onChange={(e) => setEmail(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "email").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "email").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -201,10 +200,10 @@ const uploadImage = async() =>{
                       <div className="form-group">
                         <label >Adresse</label>
                         <input type="text" className="form-control" value={adresse} name="adresse" placeholder="Entrer Adresse" onChange={(e) => setAdresse(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "adresse").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "adresse").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
 
@@ -237,10 +236,10 @@ const uploadImage = async() =>{
                       <div className="form-group">
                         <label >Droit Congé</label>
                         <input type="text" className="form-control" value={droitCongé} name="droitCongé " placeholder="Enter Droit Congé" onChange={(e) => setDroitCongé(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "droitCongé").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "droitCongé").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -262,10 +261,10 @@ const uploadImage = async() =>{
                       <div className="form-group">
                         <label >Mot de passe</label>
                         <input type="password" className="form-control" value={motDePasse} name="motDePasse " placeholder="Entrer Mot de passe" onChange={(e) => setMotDePasse(e.target.value)} />
-                        <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "motDePasse").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                        <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                          errors.errors.filter(err => err.param === "motDePasse").map((msg) => msg.msg)
+                          : ""
+                        }</span>
                       </div>
                     </div>
                   </div>
@@ -275,10 +274,10 @@ const uploadImage = async() =>{
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <label >Salaire</label>
                       <input type="number" className="form-control" value={salaire} name="salaire" placeholder="Entrer montant salaire" onChange={(e) => setSalaire(e.target.value)} />
-                      <span style={{color:"rgb(196, 22, 22)" , fontSize: "14px"}}>{errors ?
-                          errors.errors.filter(err => err.param === "salaire").map((msg)=>msg.msg)
-                        :""
-                        }</span> 
+                      <span style={{ color: "rgb(196, 22, 22)", fontSize: "14px" }}>{errors ?
+                        errors.errors.filter(err => err.param === "salaire").map((msg) => msg.msg)
+                        : ""
+                      }</span>
                     </div>
                   </div>
                   <hr />
@@ -303,5 +302,5 @@ const uploadImage = async() =>{
 
 export default NewUser;
 // errors={errors ? errors.errors.filter(err => err.param === "nom") : ""}
-// className={Classnames("form-control", { "is-invalide": errors })} 
+// className={Classnames("form-control", { "is-invalide": errors })}
 // id={errors?(!errors.errors.filter(err => err.param === "nom")?("ffff"):("invalide")):("")}

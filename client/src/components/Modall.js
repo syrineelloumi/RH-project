@@ -1,4 +1,5 @@
 import { Box, Modal } from '@mui/material';
+import { height } from '@mui/system';
 import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
@@ -46,6 +47,8 @@ function Modall({conge}) {
 
 
 <div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />
+
 <i className="bi bi-pencil-square" onClick={handleOpen}></i>
 
 <Modal className="Modal"  open={open} onClose={handleClose} style={{background:"none"}}>
@@ -54,11 +57,11 @@ function Modall({conge}) {
                                             <h1 style={{ marginTop: 0, textAlign: 'center', paddingTop: "0px", paddingBottom: "0px", paddingLeft: "30px" }}>Modifier état congé</h1><br />
                                             <div style={{ marginTop: 50 }} >
                                                 <label style={{ marginLeft: 15 }}><b>État congé</b></label>
-                                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" value={etat} onChange={(e) => setEtat(e.target.value)} style={{ marginLeft: 20, width: "25pc" }}>
-                                                    <option value="en cours" selected={conge.etat === "en cours" ? true : false} >en cours</option>
-                                                    <option value="validé par responsable" selected={conge.etat === "validé par responsable" ? true : false}>validé par responsable</option>
-                                                    <option value="validé par admin" selected={conge.etat === "validé par admin" ? true : false}>validé par admin</option>
-                                                    <option value="refusé" selected={conge.etat === "refusé" ? true : false}>refusé</option>
+                                                <select class="form-select form-select-sm" aria-label=".form-select-sm example" value={etat} onChange={(e) => setEtat(e.target.value)} style={{ marginLeft: 20, width: "25pc" ,fontFamily: 'FontAwesome'}}>
+                                                    <option value="en cours" selected={conge.etat === "en cours" ? true : false} >&#xf252; en cours </option>
+                                                    <option value="validé par responsable" selected={conge.etat === "validé par responsable" ? true : false}>&#xf00c; validé par responsable</option>
+                                                    <option value="validé par admin" selected={conge.etat === "validé par admin" ? true : false}>&#xf00c;&#xf00c;validé par admin</option>
+                                                    <option value="refusé" selected={conge.etat === "refusé" ? true : false}>&#xf00d;refusé</option>
                                                 </select>
                                             </div>
 

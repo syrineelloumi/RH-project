@@ -73,11 +73,13 @@ body{
     text-align:center;
     font-size:200%;
     font-style:normal;
+ 
     
 }
 .nav-bar{
     background-color:#c7cbd1;
     border-radius: .25rem;
+    height: 4pc;
     
     
 }
@@ -193,7 +195,9 @@ table {
 
 .bi{
     cursor: pointer;
+
 }
+
 .modelBox{
     position:absolute;
     top: 50%;
@@ -218,11 +222,9 @@ table {
       background-color: white;
       border: 2px solid #000;
       box-shadow: 24;
-      padding: 10px
+      padding: 10px;
+      border-radius: 30px;
 }
 
-.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
-    background:;
-}
 
 
