@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import '../styles/Profilestyle.css'
 
 import { createUser, getAllUsers } from '../redux/action';
 import { Link } from "react-router-dom";
@@ -129,7 +130,7 @@ const uploadImage = async() =>{
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   <img src={url} alt="" className="rounded-circle" width="150px" height="150px" />
-                  <input  type="file"  accept='image/png , image/jpg' style={{fontSize:"12px"}} onChange={(e)=>setFile(e.target.files[0])}></input>
+                  <input  type="file"  accept='image/png , image/jpg' style={{fontSize:"12px" , width:"15pc"}} onChange={(e)=>setFile(e.target.files[0])}></input>
                   <button onClick={uploadImage} style={{fontSize:"12px"}} >enregistrer</button>
                 </div>
               </div>
@@ -226,6 +227,8 @@ const uploadImage = async() =>{
                         <select type="text" className="form-control" value={contrat} name="contrat" placeholder="Entrer Contrat " onChange={(e) => setContrat(e.target.value)}  >
                           <option value="CDD">CDD</option>
                           <option value="CDI">CDI</option>
+                          <option value="KARAMA">KARAMA</option>
+                          <option value="CVP">CVP</option>
                         </select>
                       </div>
                     </div>

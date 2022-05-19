@@ -12,7 +12,7 @@ const Congé = require('./routers/Congé')
 
 
 connectDB()
-let PORT=process.env.PORT||8888
+let PORT=process.env.PORT||5000
 app.use(express.json())
 app.use('/user', user)
 app.use('/departement',departement)

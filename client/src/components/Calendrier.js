@@ -9,11 +9,12 @@ import AddEventModal from './Pointage';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getPoint } from '../redux/action';
+// import { color } from '@mui/system';
 
 const Calendrier = () => {
     const [currentMonth, setCurrentMonth] = useState(new Date())
     const [selectedDate, setSelectedDate] = useState(new Date(Date.now()))
-    const [events, setEvents] = useState([])
+    // const [events, setEvents] = useState([])
     const [showEventModal, setShowEventModal] = useState(false)
     const [eventToEdit, setEventToEdit] = useState({})
     const { listPointage } = useSelector((state) => state);
@@ -109,11 +110,13 @@ const Calendrier = () => {
                             </div>
                             <div key={"add-event-" + day} className="add-event-button" >
                                 <Fab
-                                    color="primary"
+                                    // color="primary"
+                                    
                                     size="small"
                                     aria-label="add"
                                     onClick={() => onAddEventClick(cloneDay)}
-                                >
+                                    style={{backgroundColor:"#c7cbd2" , color:"white"}}
+                                 >
                                     <AddIcon />
                                 </Fab>
                             </div>

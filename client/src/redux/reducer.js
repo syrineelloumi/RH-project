@@ -1,5 +1,8 @@
-import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, CREATE_USER, CREATE_USER__FAIL, 
-  DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_MP_FAIL, EDIT_MP_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_POINT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionTypes";
+import {
+  ADD_CONGE,
+  ADD_CONGE_FAIL, ADD_CONGE_SUCCESS, ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, CREATE_USER, CREATE_USER__FAIL,
+  DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_CONGE_FAIL, EDIT_CONGE_SUCCESS, EDIT_MP_FAIL, EDIT_MP_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_ALLCONGES_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_POINT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT
+} from "./actionTypes";
 
 
 let init = {
@@ -11,7 +14,9 @@ let init = {
   departementsList: null,
   token: localStorage.getItem("token"),
   pointage: null,
-  listPointage: null
+  listPointage: null,
+  ddeConge: null,
+  listDdeConge: null,
 
 
 };
@@ -22,6 +27,7 @@ export const reducer = (state = init, { type, payload }) => {
     case CREATE_USER:
     case ADD_DEPART:
     case ADD_POINT:
+    case ADD_CONGE:
       return {
         ...state,
         usersList: payload,
@@ -47,6 +53,8 @@ export const reducer = (state = init, { type, payload }) => {
     case CREATE_USER__FAIL:
     case ADD_DEPART_FAIL:
     case EDIT_MP_FAIL:
+    case ADD_CONGE_FAIL:
+    case EDIT_CONGE_FAIL:
       return {
         ...state,
         errors: payload,
@@ -69,6 +77,7 @@ export const reducer = (state = init, { type, payload }) => {
       };
     case EDIT_USER_SUCCESS:
     case EDIT_MP_SUCCESS:
+    case EDIT_CONGE_SUCCESS:
       return {
         ...state,
         // user: state.user.map((u) => (
@@ -123,10 +132,25 @@ export const reducer = (state = init, { type, payload }) => {
         errors: null,
 
       };
-      case GET_POINT_SUCCESS:
+    case GET_POINT_SUCCESS:
       return {
         ...state,
         listPointage: payload,
+        loading: false,
+        errors: null
+      };
+    case ADD_CONGE_SUCCESS:
+      return {
+        ...state,
+        listDdeConge: payload,
+        loading: false,
+        errors: null,
+
+      };
+    case GET_ALLCONGES_SUCCESS:
+      return {
+        ...state,
+        listDdeConge: payload,
         loading: false,
         errors: null
       };
@@ -135,6 +159,7 @@ export const reducer = (state = init, { type, payload }) => {
     default:
       return state;
   }
+
 
 
 };

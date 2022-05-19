@@ -1,7 +1,8 @@
 import axios from "axios";
 
 import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, ADD_POINT_FAIL, ADD_POINT_SUCCESS, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, 
-  EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS,EDIT_MP, EDIT_MP_SUCCESS , EDIT_MP_FAIL , GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, GET_POINT, GET_POINT_SUCCESS, GET_POINT_FAIL } from "./actionTypes";
+  EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS,EDIT_MP, EDIT_MP_SUCCESS , EDIT_MP_FAIL , GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS,
+   LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, GET_POINT, GET_POINT_SUCCESS, GET_POINT_FAIL, ADD_CONGE, ADD_CONGE_SUCCESS, ADD_CONGE_FAIL, GET_ALLCONGES, GET_ALLCONGES_SUCCESS, GET_ALLCONGES_FAIL, EDIT_CONGE, EDIT_CONGE_SUCCESS, EDIT_CONGE_FAIL } from "./actionTypes";
 
 
 export const createUser = (newUser) => async (dispatch) => {
@@ -122,6 +123,7 @@ export const editUser = (editUser) => async (dispatch) => {
       payload: res.data,
     });
     alert("mise à jour avec succès" )
+    window.location.reload();
     
     
   } catch (error) {
@@ -273,7 +275,7 @@ export const addPoint = (newPoint) => async (dispatch) => {
 }
 
 
-export const UpdateMp = (editUser) => async (dispatch) => {
+export const UpdateMp = (id,editUser) => async (dispatch) => {
   dispatch({ type: EDIT_MP});
   let token = localStorage.getItem("token");
   let config = {
@@ -282,14 +284,14 @@ export const UpdateMp = (editUser) => async (dispatch) => {
     }
   };
   try {
-    const res = await axios.put(`/user/UpdateMp/${editUser.id}`,editUser,config);
+    const res = await axios.put(`/user/UpdateMp/${id}`,editUser,config);
     
     dispatch({
       type: EDIT_MP_SUCCESS,
       payload: res.data,
     });
     alert("mise à jour avec succès" )
-    
+    console.log("m2p changed");
     
   } catch (error) {
     dispatch({
@@ -297,6 +299,7 @@ export const UpdateMp = (editUser) => async (dispatch) => {
       payload: error.response.data,
     });
     console.log("erreur", error);
+    alert(error.response.data.msg);
   }
 };
 
@@ -324,6 +327,89 @@ export const getPoint = () => async (dispatch) => {
     });
   }
 };
+
+
+export const addConge = (ddeConge) => async (dispatch) => {
+  dispatch({ type: ADD_CONGE });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  try {
+    const res = await axios.post("/conge/addConge", ddeConge, config);
+    dispatch({
+      type: ADD_CONGE_SUCCESS,
+      payload: res.data,
+
+    });
+    alert("Envoi demande avec succès" )
+  }catch (error) {
+  dispatch({
+    type: ADD_CONGE_FAIL,
+    payload: error.response.data,
+  });
+  alert(error.response.data.msg);
+  }
+}
+
+
+export const getAllConges = () => async (dispatch) => {
+  dispatch({
+    type: GET_ALLCONGES,
+  });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  try {
+    let res = await axios.get("/conge/getAllConges", config);
+    dispatch({
+      type: GET_ALLCONGES_SUCCESS,
+      payload: res.data,
+    });
+    console.log("congé",res.data);
+  } catch (error) {
+    dispatch({
+      type: GET_ALLCONGES_FAIL,
+      payload: error.response.data,
+    });
+  }
+};
+
+
+
+export const editConge = ({id, etat}) => async (dispatch) => {
+  dispatch({ type: EDIT_CONGE });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+        Authorization: token,
+    }
+  };
+  try {
+    const res = await axios.put(`/conge/updateEtatConge/${id}`,etat,config);
+    
+    dispatch({
+      type: EDIT_CONGE_SUCCESS,
+      payload: res.data,
+    });
+    
+    // window.location.reload();
+    
+    
+  } catch (error) {
+    dispatch({
+      type: EDIT_CONGE_FAIL,
+      payload: error.response.data,
+    });
+    console.log("erreur", error);
+  }
+};
+
 
 
 

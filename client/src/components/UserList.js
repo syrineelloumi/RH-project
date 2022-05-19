@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 
 
-import { deleteUser, getAllUsers, getDepartements, logOut ,addDepart } from "../redux/action";
+import { deleteUser, getAllUsers, getDepartements, logOut, addDepart, getAllConges } from "../redux/action";
 
 
 
@@ -22,6 +22,8 @@ const UserList = () => {
   useEffect(() => {
     dispatch(getAllUsers())
     dispatch(getDepartements())
+    dispatch(getAllConges())
+
 
   }, [])
   const handelSubmit = (e) => {
@@ -40,21 +42,22 @@ const UserList = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(addDepart({
-      
+
       nomDépartment: nomDépartment
-    }))    
-   
+    }))
+
     setNomDépartement('')
-   
+
 
 
   }
 
 
- 
+
   return (
     <div>
       <nav className='navBarList'>
+        
         <div className="dropdown">
           <i className="bi bi-gear" style={{ fontSize: "1rem", color: "white", paddingLeft: "1280px", marginLeft: "200px" }} data-toggle="dropdown"></i>
 
@@ -69,10 +72,10 @@ const UserList = () => {
               >
                 <Box className='modelBox2'>
                   <form >
-                    <h1 style={{ textAlign: "center" }}>Ajouter département</h1>
+                    <h1 style={{ marginTop: 0, textAlign: 'center', paddingTop: "0px", paddingBottom: "0px", paddingLeft: "30px" }}>Ajouter département</h1><br />
                     <div style={{ marginTop: 50 }} >
                       <label style={{ marginLeft: 40 }}><b>Nom département</b></label>
-                      <input style={{ marginLeft: 50 }} type="text"  placeholder="Nom département" name="nomDépartment" onChange={(e) => setNomDépartement(e.target.value)} required /><br />
+                      <input style={{ marginLeft: 25, width: "15pc" }} type="text" placeholder="Nom département" name="nomDépartment" onChange={(e) => setNomDépartement(e.target.value)} required /><br />
                     </div>
 
 
@@ -89,16 +92,35 @@ const UserList = () => {
             </li>
           </ul>
         </div>
-        <Link className='new' to={"/newUser"}>
-          <i className="bia bi-plus-circle">Nouveau Utilisateur</i><br />
+        <l className="breadcrumb" style={{height:"2pc" , backgroundColor:"black"}}>
+        <li className="item mx-auto" style={{ top:"-95%"}}><Link to={"/newUser"}>
+          <i className="bi bi-plus-circle" style={{ fontSize: "1rem", color: "white" , top:"-12%"}}><p style={{fontSize:11}}>Nouveau Utilisateur</p></i>
+          
         </Link>
+        </li>
+        <li className="item mx-auto" style={{top:"-95%"}}><Link to={"/listConge"}>
+          <i class="bi bi-card-checklist" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande Congé</p></i>
+          
+        </Link>
+        </li>
+        <li className="item mx-auto"  style={{top:"-95%"}}><Link to="/Cal">
+          <i className="bi bi-calendar2-check" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande HS</p></i>
+         
+        </Link>
+        </li>
+        
+         
+
+        {/* <Link className='new' to={"/newUser"}>
+          <i className="bia bi-plus-circle" >Nouveau Utilisateur</i><br />
+        </Link>
+        <Link className='new' to={"/newUser"}>
+          <i class="bia bi-card-checklist">Demande Congé </i><br/>
+        </Link> */}
         {/* <i className="bia bi-search"></i> */}
-
-        <h2 > Liste des employés </h2>
-
-
+        </l>
       </nav>
-
+<div> <h2 > Liste des employés </h2></div>
       <table>
         <tbody>
           <tr className='tabhead'>
@@ -136,8 +158,8 @@ const UserList = () => {
                 </span>
 
                 <span className='span' onClick={() => {
-                  
-                  dispatch(deleteUser(e._id) );
+
+                  dispatch(deleteUser(e._id));
                   dispatch(getAllUsers());
                 }}><i className="bis bi-trash" >Supprimer</i
                 ></span>

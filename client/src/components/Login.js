@@ -13,20 +13,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useDispatch} from 'react-redux';
 import { userLogin } from '../redux/action';
-import logo from "./logo-planify4-_1_.jpeg"
+import logo from "../image/logo planify f.svg"
 
 
 const theme = createTheme();
 
 const Login = () => {
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   const data = new FormData(event.currentTarget);
-  //   console.log({
-  //     email: data.get('email'),
-  //     password: data.get('password'),
-  //   });
-  // };
+  
 
   const [email, setEmail] = useState("");
   const [motDePasse, setMotDePasse] = useState("");
@@ -47,24 +40,18 @@ const Login = () => {
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: '100vh' }}>
           <CssBaseline />
-          <img src={logo} alt='imag'  style={{ width: "300px", height: "180px" , marginLeft:"290px" ,  marginRight:"290px" , marginTop:"200px"}}/>
           
-          {/* <Grid
+          
+          <Grid
             item
             xs={false}
             sm={4}
             md={7}
-            sx={{
-              backgroundImage: 'logo.jpg',
-              backgroundRepeat: 'no-repeat',
-              backgroundColor: (t) =>
-                t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          /> */}
+            mt={30}
+           
+          ><img src={logo} alt='imag' style={{ width: "600px", height: "180px"}}></img></Grid>
 
-          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Grid item xs={12}  sm={8} md={5} component={Paper} elevation={6} square>
 
             <Box
               sx={{
@@ -75,14 +62,17 @@ const Login = () => {
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'black' }}>
+              {/* <div>
+                <p style={{fontSize:"50px"}}></p>
+              </div> */}
+              <Avatar  sx={{  m: 1, bgcolor: 'black' ,mt:10}}>
                 <LockOutlinedIcon />
               </Avatar>
               <Typography component="h1" variant="h5">
                 Sign in
               </Typography>
 
-              <Box component="form" noValidate onSubmit={handelSubmit} sx={{ mt: 1 }}>
+              <Box component="form" className='form' noValidate onSubmit={handelSubmit} sx={{ mt: 5 }}>
                 <TextField
                 
                   margin="normal"

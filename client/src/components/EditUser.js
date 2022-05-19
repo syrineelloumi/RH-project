@@ -184,11 +184,11 @@ const EditUser = () => {
                     </div>
 
                     {user.role === "Employé" ||user.role==="Responsable" ? (
-                      <div style={{ marginLeft: "11pc" }}>
+                      <div style={{ marginLeft: "1pc" }}>
                         <label >Département</label><br />
-                        <div style={{ background: "white" , width:"10pc"  }}>
+                        <p style={{ background: "white" , width:"31pc" ,height:"2.3pc" ,  borderRadius:" 5px" }}>
                           {`${user.département}`}
-                        </div>
+                        </p>
                       </div>
 
                     ) : (
@@ -209,9 +209,9 @@ const EditUser = () => {
 
                   < div className="row ml-6">
                     {user.role === "Employé" || user.role==="Responsable" ? (
-                      <div style={{ marginLeft: "11pc", marginRight: "18pc" }}>
+                      <div style={{ marginLeft: "1pc" }}>
                         <label >Contart</label><br />
-                        <div style={{ background: "white" , width:"10pc" }}>
+                        <div style={{ background: "white" ,width:"31pc" ,height:"2pc" ,  borderRadius:" 5px"}}>
                           {`${user.contrat}`}
                         </div>
                       </div>
@@ -228,9 +228,9 @@ const EditUser = () => {
                       </div>)}
 
                     {user.role === "Employé" || user.role==="Responsable" ? (
-                      <div style={{ marginLeft: "5pc" }}>
+                      <div style={{ marginLeft: "2pc" }}>
                         <label >Droit Congé</label><br />
-                        <div style={{ background: "white" , width:"10pc" }}>
+                        <div style={{ background: "white" ,width:"31pc" ,height:"2pc" ,  borderRadius:" 5px"}}>
                           {`${user.droitCongé}`}
                         </div>
                       </div>
@@ -251,9 +251,9 @@ const EditUser = () => {
 
                   <div className="row ml-6">
                     {user.role === "Employé" || user.role==="Responsable" ? (
-                      <div style={{ marginLeft: "11pc", marginRight: "7pc" }}>
+                      <div style={{ marginLeft: "1pc"}}>
                         <label >Role</label><br />
-                        <div style={{ background: "white" , width:"10pc" }}>
+                        <div style={{ background: "white" ,width:"31pc" ,height:"2pc",  borderRadius:" 5px" }}>
                           {`${user.role}`}
                         </div>
                       </div>
@@ -271,9 +271,9 @@ const EditUser = () => {
                       </div>)
                     }
                     {user.role === "Employé" || user.role==="Responsable" ? (
-                      <div style={{ marginLeft: "16pc", marginRight: "10pc" }}>
+                      <div style={{ marginLeft: "2pc",  }}>
                         <label >Mot de passe</label><br />
-                        <div style={{background:"white" , width:"10pc"}}>
+                        <div style={{background:"white" , width:"31pc" ,height:"2pc",  borderRadius:" 5px" }}>
                           *****
                         </div>
                       </div>
@@ -294,9 +294,9 @@ const EditUser = () => {
 
                   <div className="row">
                     {user.role === "Employé" || user.role==="Responsable" ? (
-                      <div style={{ marginLeft: "27pc" }}>
+                      <div style={{ marginLeft: "17pc" }}>
                         <label >Salaire</label><br />
-                        <div style={{background:"white" , width:"10pc"}}>
+                        <div style={{background:"white" ,width:"31pc" ,height:"2pc" ,borderRadius:" 5px" }}>
                           {`${user.salaire}`}
                         </div>
                       </div>

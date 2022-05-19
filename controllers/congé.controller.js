@@ -12,6 +12,9 @@ exports.addConge = async (req, res) => {
   let userID = user.id;
 
   let {dateDébut, dateFin, type ,motif } = req.body;
+  if(dateDébut>dateFin){
+    res.status(400).json({ msg: "Date fin doit être supperieur à date début" });
+  }
   
   
   try {
@@ -22,6 +25,7 @@ exports.addConge = async (req, res) => {
         type:type,
         motif:motif,
         userId: userID
+        
 
     });
     newCongé.save();
@@ -80,7 +84,7 @@ exports.updateConge = async (req, res) => {
 exports.getUserConges = async (req, res) => {
   let token = req.headers.authorization;
   let decoded = jwt.verify(token, secret);
-  let user = await User.findById(decoded.id);
+  let user = await User.findById(decoded.id).sort({id:-1});
   let userID = user.id;
  
   
@@ -99,10 +103,7 @@ catch (err) {
 
 exports.getAllConges = async (req, res) => {
   try {
-
-      
-
-      let conges = await Congé.find()
+      let conges = await Congé.find().sort({_id:-1})
       res.send(conges)
   }
   catch (err) {

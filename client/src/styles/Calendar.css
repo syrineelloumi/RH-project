@@ -234,7 +234,8 @@ main {
   bottom: 5%;
 }
 .event-data {
-  background-color: rgb(102, 162, 218);
+  /* background-color: rgb(102, 162, 218); */
+  background-color: #69b2f7;
   color: white;
   border-radius: 3px;
   margin: 2px;

@@ -150,36 +150,42 @@ exports.login = async (req, res) => {
 
 
 exports.UpdateMp = async (req, res) => {
-    let { motDePasse} = req.body;
-    let user = await User.findOne({ id: req.params.id })
-
-    let isExist = await user.motDePasse;
-    if (!isExist) {
-        res.status(400).json({ msg: "Mot de passe actuel incorrect" });
-    } else {
-
+    
+        let token = req.headers.authorization;
+        let decoded = jwt.verify(token, secret);
+        let user = await User.findById(decoded.id);
+        console.log(req.params.id)
+        console.log(decoded.id)
+        let {motDePasse } = req.body
+        // if({motDePasse}.lenght>4){
+            if (req.params.id !== decoded.id) {
+            res.status(400).json({ msg: "you cannot edit this user" });
+        }
         try {
-            let editedUser= await User.findByIdAndUpdate(req.params.id,{...req.body})
-            let salt = await bc.genSalt(10);
-            let hash = await bc.hashSync(motDePasse, salt);
+            let editedUser = await User.findByIdAndUpdate(req.params.id, { ...req.body })
+            let salt = await bcrypte.genSalt(10);
+            let hash = await bcrypte.hashSync(motDePasse, salt);
             editedUser.motDePasse = hash;
             await editedUser.save();
-            
-              let payload = {
+            let payload = {
                 id: editedUser._id,
-                nom: editedUser.nom,
                 role: editedUser.role
-    
-          }
-            let token = jwt.sign(payload, secret);
-            res.send({editedUser,token})
-            } catch (error) {
-                console.log(error.message)
             }
+            let token = jwt.sign(payload, secret);
+            res.send({ editedUser, token })
+        } catch (error) {
+            console.log(error.message)
+        }
+        // }else{
+        //     res.status(400).json({ msg: "password is too short" });
+        // }
+        
+
     }
 
 
-}
+
+
 
 
 

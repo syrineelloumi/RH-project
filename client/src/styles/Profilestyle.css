@@ -108,7 +108,7 @@ table {
 
   .navBarList{
       background-color: #08090a;
-      height: 80px;
+      height: 60px;
       
       
       
@@ -116,9 +116,10 @@ table {
 
   }
   h2{
-      color: white;
+      color: black;
       text-align: center;
       font-style:normal;
+      
       
       
     
@@ -138,7 +139,7 @@ table {
     
 }
 .nomDept{
-    background-color: #e2e8f0;
+    background-color: #e9ecef;
     font-style: italic;
 }
 
@@ -150,7 +151,8 @@ table {
 }
 .bim{
     color: #08090a;
-    padding-right: 1pc
+    padding-right: 1pc;
+    text-decoration: underline white;
      
     
 }
@@ -160,15 +162,20 @@ table {
 }
 .bim:hover{
     color: rgb(83, 83, 201);
-    display: inline-block;
+    /* display: inline-block; */
+    
 }
 .bia{
     color: white;
-    padding: 8px , 8px ,80px ;
-    padding-left: 1280px; 
-   
+    padding-right: 2pc;
+    margin-right: -80PC;
+    
+    text-decoration: underline white;
+  
     
 }
+
+
 .new:hover{
     color: white;
 }
@@ -214,7 +221,8 @@ table {
       padding: 10px
 }
 
-
-
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
+    background:;
+}
 
 

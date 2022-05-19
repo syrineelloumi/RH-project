@@ -1,7 +1,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import '../styles/Profilestyle.css'
 
 import { getDepartements, getProfile } from "../redux/action";
 import NavBar from "./NavBar";
@@ -22,7 +22,7 @@ const Profile = () => {
             <div className="main-body">
 
 
-             <NavBar/>
+             <NavBar user={user}/>
 
                 <div className="row gutters-sm">
                     <div className="col-md-4 mb-10">
@@ -32,8 +32,8 @@ const Profile = () => {
                                     <img src={user.image} alt="" className="rounded-circle" width="150" />
                                     <div className="mt-5">
 
-                                        <h4> BIENVENUE <br/>
-                                            {` ${user.nom} ${user.prenom}`}</h4>
+                                        <h4 style={{color:"#0084FF"}}> BIENVENUE </h4>
+                                          <h5>  {` ${user.nom} ${user.prenom}`}</h5>
                                         
                                     </div>
                                 </div>
