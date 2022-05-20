@@ -91,7 +91,7 @@
     }
     .item i {
     right: 2%;
-    top: 30px;
+   
     z-index: 1;
     }
     [type="date"]::-webkit-calendar-picker-indicator {
@@ -100,7 +100,7 @@
     opacity: 0;
     cursor: pointer;
     }
-    input[type=radio]  {
+    /* input[type=radio]  {
     display: none;
     }
     label.radio {
@@ -108,7 +108,7 @@
     display: inline-block;
     margin: 5px 20px 10px 0;
     cursor: pointer;
-    }
+    } */
     
     span.required {
     margin-left: 0;

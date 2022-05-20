@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, ADD_POINT_FAIL, ADD_POINT_SUCCESS, CREATE_USER, CREATE_USER_SUCCESS, CREATE_USER__FAIL, DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, 
   EDIT_USER, EDIT_USER_FAIL, EDIT_USER_SUCCESS,EDIT_MP, EDIT_MP_SUCCESS , EDIT_MP_FAIL , GET_DEPARTEMENT, GET_DEPARTEMENT_FAIL, GET_DEPARTEMENT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS,
-   LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, GET_POINT, GET_POINT_SUCCESS, GET_POINT_FAIL, ADD_CONGE, ADD_CONGE_SUCCESS, ADD_CONGE_FAIL, GET_ALLCONGES, GET_ALLCONGES_SUCCESS, GET_ALLCONGES_FAIL, EDIT_CONGE, EDIT_CONGE_SUCCESS, EDIT_CONGE_FAIL } from "./actionTypes";
+   LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, GET_POINT, GET_POINT_SUCCESS, GET_POINT_FAIL, ADD_CONGE, ADD_CONGE_SUCCESS, ADD_CONGE_FAIL, GET_ALLCONGES, GET_ALLCONGES_SUCCESS, GET_ALLCONGES_FAIL, EDIT_CONGE, EDIT_CONGE_SUCCESS, EDIT_CONGE_FAIL, GET_USERCONGES, GET_USERCONGES_SUCCESS, GET_USERCONGES_FAIL } from "./actionTypes";
 
 
 export const createUser = (newUser) => async (dispatch) => {
@@ -266,6 +266,8 @@ export const addPoint = (newPoint) => async (dispatch) => {
 
     });
     alert("ajout avec succès" )
+    window.location.reload();
+
   }catch (error) {
   dispatch({
     type: ADD_POINT_FAIL,
@@ -407,6 +409,32 @@ export const editConge = ({id, etat}) => async (dispatch) => {
       payload: error.response.data,
     });
     console.log("erreur", error);
+  }
+};
+
+
+export const getUserConges = () => async (dispatch) => {
+  dispatch({
+    type: GET_USERCONGES,
+  });
+  let token = localStorage.getItem("token");
+  let config = {
+    headers: {
+      Authorization: token,
+    },
+  };
+  try {
+    let res = await axios.get("/conge/getUserConges", config);
+    dispatch({
+      type: GET_USERCONGES_SUCCESS,
+      payload: res.data,
+    });
+    console.log("congé",res.data);
+  } catch (error) {
+    dispatch({
+      type: GET_USERCONGES_FAIL,
+      payload: error.response.data,
+    });
   }
 };
 

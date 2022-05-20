@@ -84,13 +84,13 @@ exports.updateConge = async (req, res) => {
 exports.getUserConges = async (req, res) => {
   let token = req.headers.authorization;
   let decoded = jwt.verify(token, secret);
-  let user = await User.findById(decoded.id).sort({id:-1});
+  let user = await User.findById(decoded.id);
   let userID = user.id;
  
   
   try {
 
-    let theCongé = await Congé.find()
+    let theCongé = await Congé.find().sort({_id:-1})
     let congés = theCongé.filter(e=>e.userId=userID)
     res.send(congés)
 }

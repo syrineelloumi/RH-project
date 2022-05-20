@@ -13,7 +13,7 @@ import axios from 'axios';
 
 // import { Container } from './styles';
 
-function NavBar({user}) {
+function NavBar({ user }) {
   const dispatch = useDispatch();
   const handelSubmit = (e) => {
     e.preventDefault();
@@ -31,43 +31,43 @@ function NavBar({user}) {
   //   event.preventDefault();
   //   dispatch(UpdateMp({
   //     id:user._id,
-      
-      
+
+
   //   }))
 
   // }
-console.log(motDePasse.length>4);
-  
+  // console.log(motDePasse.length > 4);
 
-  const UpdateMps = (id,editUser) =>  {
-      // dispatch({ type: EDIT_MP});
-      let token = localStorage.getItem("token");
-      let config = {
-        headers: {
-            Authorization: token,
-        }
-      };
-      try {
-        const res =  axios.put(`/user/UpdateMp/${id}`,editUser,config);
-        
-        // dispatch({
-        //   type: EDIT_MP_SUCCESS,
-        //   payload: res.data,
-        // });
-        alert("mise à jour avec succès" )
-        // console.log("m2p changed");
-        
-      } catch (error) {
-        // dispatch({
-        //   type: EDIT_MP_FAIL,
-        //   payload: error.response.data,
-        // });
-        // console.log("erreur", error);
-        alert(error.response.data.msg);
+
+  const UpdateMps = (id, editUser) => {
+    // dispatch({ type: EDIT_MP});
+    let token = localStorage.getItem("token");
+    let config = {
+      headers: {
+        Authorization: token,
       }
     };
+    try {
+      const res = axios.put(`/user/UpdateMp/${id}`, editUser, config);
 
-  
+      // dispatch({
+      //   type: EDIT_MP_SUCCESS,
+      //   payload: res.data,
+      // });
+      alert("mise à jour avec succès")
+      // console.log("m2p changed");
+
+    } catch (error) {
+      // dispatch({
+      //   type: EDIT_MP_FAIL,
+      //   payload: error.response.data,
+      // });
+      // console.log("erreur", error);
+      alert(error.response.data.msg);
+    }
+  };
+
+
 
   return (
 
@@ -80,10 +80,25 @@ console.log(motDePasse.length>4);
           {/* <p style={{ color: "black", fontSize: "12px", textDecoration: "underline 0" , margin:"0px 0px 0px"  }}>Profile</p> */}
         </Link>
         </li>
-        <li className="item mx-auto"><Link to="/ddeConge">
-          <i className="bi bi-calendar-heart" style={{ fontSize: "1rem", color: "black", top: "-6%" }}>Congé</i>
-          {/* <p style={{ color: "black", fontSize: "12px", }}>Congé</p> */}
+
+        {/* <li className="item mx-auto"><Link to="/ddeConge">
+          <i className="bi bi-calendar-heart" style={{ fontSize: "1rem", color: "black", top: "-4%" }}>Congé</i>
         </Link>
+        </li> */}
+        <li className="item mx-auto">
+          <i className="bi bi-calendar-heart" style={{ fontSize: "1rem", color: "black", top: "-6%" }} data-toggle="dropdown">Congé</i>
+          <ul className="dropdown-menu" style={{ width: "10pc", marginRight: "10pc", height: "5pc" }}>
+
+            <li style={{marginLeft:"4px"}}>
+              <Link to="/ddeConge" style={{ color: "black", textDecoration: " none" }} >Demande de congé</Link>
+            </li><br/>
+
+            <li style={{ marginTop: "-12px" , marginLeft:"4px"}}>
+              <Link style={{ color: "black", textDecoration: " none" }} to={"/HistoriqueConge"}>Historique Congé</Link>
+            </li>
+
+          </ul>
+
         </li>
         <li className="item mx-auto"><Link to="/Cal">
           <i className="bi bi-calendar2-check" style={{ fontSize: "1rem", color: "black", top: "-6%" }}>Pointage</i>
@@ -108,15 +123,15 @@ console.log(motDePasse.length>4);
               >
                 <Box className='modelBox'>
                   <form >
-                    <h1 style={{ textAlign: "center", marginTop: 0, paddingTop: "0px", paddingBottom: "0px", paddingLeft: "30px" }}>changer mot de passe</h1><br />
+                    <h1 style={{ textAlign: "center", marginTop: 0, paddingTop: "0px", paddingBottom: "0px", paddingLeft: "7pc" }}>Changer mot de passe</h1><br />
                     <div style={{ marginTop: 50 }} >
 
-                      <label ><b style={{ marginLeft: 20 }}>Nouveau mot de passe</b></label>
-                      <input style={{ marginLeft: 141, width: "15pc" }} type="password" placeholder="Nouveau MP" name="nouveau MP" value={motDePasse} onChange={(e) => setMotDePasse(e.target.value)} required /><br />
+                      <label ><b style={{ marginLeft: 80 }}>Nouveau mot de passe</b></label>
+                      <input style={{ marginLeft: 50, width: "15pc" }} type="password" placeholder="Nouveau MP" name="nouveau MP" value={motDePasse} onChange={(e) => setMotDePasse(e.target.value)} required /><br />
 
-                    </div>
+                    </div><br/>
                     <div style={{ textAlign: "center" }}>
-                      <button className="btn" onClick={(e)=>{e.preventDefault();console.log("cc");UpdateMps(user._id,{motDePasse})}}>Enregistrer</button>
+                      <button className="btn" onClick={(e) => { e.preventDefault(); console.log("cc"); UpdateMps(user._id, { motDePasse }) }}>Enregistrer</button>
                       <button style={{ marginLeft: 25 }} type="button" className="btn cancel" onClick={handleClose}>Annuler</button>
                     </div>
                   </form>

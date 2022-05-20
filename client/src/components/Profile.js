@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import '../styles/Profilestyle.css'
 
-import { getDepartements, getProfile } from "../redux/action";
+import { getDepartements, getPoint, getProfile } from "../redux/action";
 import NavBar from "./NavBar";
 
 const Profile = () => {
@@ -14,6 +14,9 @@ const Profile = () => {
       }, []);
       useEffect(() => {
         dispatch(getDepartements());
+        dispatch(getPoint())
+           
+         
       }, []);
      
      

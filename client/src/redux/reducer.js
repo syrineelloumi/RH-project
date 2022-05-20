@@ -1,7 +1,7 @@
 import {
   ADD_CONGE,
   ADD_CONGE_FAIL, ADD_CONGE_SUCCESS, ADD_DEPART, ADD_DEPART_FAIL, ADD_DEPART_SUCCESS, ADD_POINT, CREATE_USER, CREATE_USER__FAIL,
-  DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_CONGE_FAIL, EDIT_CONGE_SUCCESS, EDIT_MP_FAIL, EDIT_MP_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_ALLCONGES_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_POINT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT
+  DELETE_USER, DELETE_USER_FAIL, DELETE_USER_SUCCESS, EDIT_CONGE_FAIL, EDIT_CONGE_SUCCESS, EDIT_MP_FAIL, EDIT_MP_SUCCESS, EDIT_USER_FAIL, EDIT_USER_SUCCESS, GET_ALLCONGES_SUCCESS, GET_DEPARTEMENT_SUCCESS, GET_POINT_SUCCESS, GET_PROFILE, GET_PROFILE_FAIL, GET_PROFILE_SUCCESS, GET_USERCONGES_FAIL, GET_USERCONGES_SUCCESS, GET_USERS, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT
 } from "./actionTypes";
 
 
@@ -17,6 +17,7 @@ let init = {
   listPointage: null,
   ddeConge: null,
   listDdeConge: null,
+  historiqueConge:null,
 
 
 };
@@ -55,6 +56,7 @@ export const reducer = (state = init, { type, payload }) => {
     case EDIT_MP_FAIL:
     case ADD_CONGE_FAIL:
     case EDIT_CONGE_FAIL:
+    case GET_USERCONGES_FAIL:
       return {
         ...state,
         errors: payload,
@@ -154,7 +156,13 @@ export const reducer = (state = init, { type, payload }) => {
         loading: false,
         errors: null
       };
-
+      case GET_USERCONGES_SUCCESS:
+        return {
+          ...state,
+          historiqueConge: payload,
+          loading: false,
+          errors: null
+        };
 
     default:
       return state;

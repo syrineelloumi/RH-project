@@ -187,9 +187,9 @@ const EditUser = () => {
                     </div>
 
                     {user.role === "Employé" || user.role === "Responsable" ? (
-                      <div style={{ marginLeft: "1pc" }}>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <label >Département</label><br />
-                        <p style={{ background: "white", width: "31pc", height: "2.3pc", borderRadius: " 5px" }}>
+                        <p style={{ background: "white", width: "37pc", height: "2.3pc", borderRadius: " 5px" }}>
                           {`${user.département}`}
                         </p>
                       </div>
@@ -211,10 +211,11 @@ const EditUser = () => {
                   <hr />
 
                   < div className="row ml-6">
+                    
                     {user.role === "Employé" || user.role === "Responsable" ? (
-                      <div style={{ marginLeft: "1pc" }}>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <label >Contart</label><br />
-                        <div style={{ background: "white", width: "31pc", height: "2pc", borderRadius: " 5px" }}>
+                        <div style={{ background: "white", width: "37pc", height: "2pc", borderRadius: " 5px" }}>
                           {`${user.contrat}`}
                         </div>
                       </div>
@@ -231,9 +232,9 @@ const EditUser = () => {
                       </div>)}
 
                     {user.role === "Employé" || user.role === "Responsable" ? (
-                      <div style={{ marginLeft: "2pc" }}>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <label >Droit Congé</label><br />
-                        <div style={{ background: "white", width: "31pc", height: "2pc", borderRadius: " 5px" }}>
+                        <div style={{ background: "white", width: "37pc", height: "2pc", borderRadius: " 5px" }}>
                           {`${user.droitCongé}`}
                         </div>
                       </div>
@@ -254,9 +255,9 @@ const EditUser = () => {
 
                   <div className="row ml-6">
                     {user.role === "Employé" || user.role === "Responsable" ? (
-                      <div style={{ marginLeft: "1pc" }}>
+                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <label >Role</label><br />
-                        <div style={{ background: "white", width: "31pc", height: "2pc", borderRadius: " 5px" }}>
+                        <div style={{ background: "white", width: "37pc", height: "2pc", borderRadius: " 5px" }}>
                           {`${user.role}`}
                         </div>
                       </div>
@@ -274,9 +275,9 @@ const EditUser = () => {
                       </div>)
                     }
                     {user.role === "Employé" || user.role === "Responsable" ? (
-                      <div style={{ marginLeft: "2pc", }}>
+                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <label >Mot de passe</label><br />
-                        <div style={{ background: "white", width: "31pc", height: "2pc", borderRadius: " 5px" }}>
+                        <div style={{ background: "white", width: "37pc", height: "2pc", borderRadius: " 5px" }}>
                           *****
                         </div>
                       </div>
@@ -297,9 +298,9 @@ const EditUser = () => {
 
                   <div className="row">
                     {user.role === "Employé" || user.role === "Responsable" ? (
-                      <div style={{ marginLeft: "17pc" }}>
+                      <div>
                         <label >Salaire</label><br />
-                        <div style={{ background: "white", width: "31pc", height: "2pc", borderRadius: " 5px" }}>
+                        <div style={{ background: "white", width: "31pc", height: "2pc", borderRadius: " 5px" ,marginLeft: "22pc" }}>
                           {`${user.salaire}`}
                         </div>
                       </div>

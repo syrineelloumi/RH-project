@@ -20,10 +20,10 @@ const Calendrier = () => {
     const { listPointage } = useSelector((state) => state);
     const dispatch = useDispatch()
     useEffect(() => {
-      dispatch(getPoint())
-     
+        dispatch(getPoint())
+
     }, [])
-    
+
 
     const formatter = new Intl.DateTimeFormat('fr', { month: 'long' });
     const month = formatter.format(currentMonth);
@@ -100,23 +100,38 @@ const Calendrier = () => {
                                     .filter(e => isSameDay(cloneDay, new Date(e.datePrésence)))
                                     .map((e, i) => (
                                         <div
-                                            onClick={() => editEvent(e)}
-                                            key={i}
-                                            className="event-data"
+
                                         >
-                                            {e.état}
+
+                                            {e.état === "Absent" ? (<div
+                                                onClick={() => editEvent(e)}
+                                                key={i}
+                                                className="event-data"
+                                                style={{ backgroundColor: "#ff3333" }}
+                                            >{e.état}</div>) : (<></>) &&
+                                                e.état === "Présent" ? (<div
+                                                    onClick={() => editEvent(e)}
+                                                    key={i}
+                                                    className="event-data"
+
+                                                >{e.état}</div>) : (<></>)
+                                            }
+
                                         </div>
                                     ))}
                             </div>
+
                             <div key={"add-event-" + day} className="add-event-button" >
+
                                 <Fab
                                     // color="primary"
-                                    
+
                                     size="small"
                                     aria-label="add"
                                     onClick={() => onAddEventClick(cloneDay)}
-                                    style={{backgroundColor:"#c7cbd2" , color:"white"}}
-                                 >
+                                    style={{ backgroundColor: "#c7cbd1", color: "black" }}
+                                >
+
                                     <AddIcon />
                                 </Fab>
                             </div>
@@ -140,7 +155,7 @@ const Calendrier = () => {
         setShowEventModal(!showEventModal)
     };
     console.log("eventModal", showEventModal);
-// console.log("date",new Date(Date.now()));
+    // console.log("date",new Date(Date.now()));
     return (
         <div>
             <NavBar />
@@ -162,7 +177,7 @@ const Calendrier = () => {
             <div className="body">{rows}</div>
             {showEventModal ?
                 <AddEventModal toggleModal={toggleModal}
-                selectedDate={selectedDate}
+                    selectedDate={selectedDate}
                 // handleFormSubmit={this.handleFormSubmit}
                 // eventToEdit={eventToEdit}
                 /> : <></>

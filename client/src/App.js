@@ -22,6 +22,7 @@ import Calendrier from './components/Calendrier';
 import ListConge from './components/ListConge';
 import DdeConge from './components/DdeConge';
 import Modall from './components/Modall';
+import HistoriqueConge from './components/HistoriqueConge';
 
 
 
@@ -41,6 +42,7 @@ function App() {
         <Route  path="/listConge" element={<ListConge/>} />
         <Route  path="/ddeConge" element={<DdeConge/>} />
         <Route  path="/mood" element={<Modall/>} />
+        <Route  path="/HistoriqueConge" element={<HistoriqueConge/>} />
         
         
         </Routes>

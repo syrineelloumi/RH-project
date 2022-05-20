@@ -43,42 +43,46 @@ const DdeConge = () => {
 
     return (
       
-        <body>
-          <NavBar/>
-    <div className="testbox">
-      <form className='form' onSubmit={onSubmit}>
+        <div className='body'>
+         
+            <div className="main-body">
+
+             <NavBar/>
+             </div>
+    <div className="testbox" style={{paddingTop:"5px"}}>
+      <form className='form' onSubmit={onSubmit} style={{boxShadow:" 0 0 25px 0 #e2e8f0"}}  >
         <div className="banner">
-          <h1>Demande de Congé</h1>
+          <h1 style={{color:"black"}}>Demande de Congé</h1>
         </div>
          
         <div className="date-item">
           <div className="item">
-            <p>Date Début<span class="required">*</span></p>
+            <p style={{ textAlign:"left" }}>Date Début<span className="required">*</span></p>
             <input type="date" name="bdate" value={dateDébut} onChange={(e)=>setDateDébut(e.target.value)} required/>
-            <i className="fas fa-calendar-alt" ></i>
+            <i className="fas fa-calendar-alt" style={{marginTop:"8px"}}></i>
           </div>
           <div className="item">
-            <p>Date Fin<span class="required">*</span></p>
+            <p style={{ textAlign:"left" }}>Date Fin<span className="required">*</span></p>
             <input type="date" name="bdate" value={dateFin} onChange={(e)=>setDateFin(e.target.value)}  required/>
-            <i className="fas fa-calendar-alt"></i>
+            <i className="fas fa-calendar-alt" style={{marginTop:"8px"}}></i>
           </div>
         </div>
        
 	   
 	   <div className="justification-item">
         <div className="item">
-          <p>Justifier votre demande :</p>
+          <p style={{ textAlign:"left" }}>Justifier votre demande :</p>
           <input type="text" name="providing"   value={motif} onChange={(e)=>setMotif(e.target.value)} />
 		</div>
 		<div className="item">
-		<p>Importer un fichier de justification :</p>
+		<p style={{ textAlign:"left" }}>Importer un fichier de justification :</p>
           <input type="file" name="file" accept="file/*"/>
         </div>
 	   </div>
 	   
 	   
         <div className="item">
-            <p>Type<span className="required">*</span></p>
+            <p style={{ textAlign:"left" }}>Type<span className="required">*</span></p>
             <select  value={type} onChange={(e)=>settype(e.target.value)} required >
             <option value="Congés payés"  selected>Sélectionner type</option>
               <option value="Congés payés">Congés payés</option>
@@ -94,7 +98,7 @@ const DdeConge = () => {
         </div>
       </form>
     </div>
-  </body>
+  </div>
 
     )
 }

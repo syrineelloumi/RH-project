@@ -117,45 +117,32 @@ const AddEventModal = ({ toggleModal, selectedDate }) => {
               </label>
             </div>
             <div>
+              
               <label >Lieu</label>
               <select type="text" className="form-control" name="lieu" placeholder="Entrer lieu " value={lieu} onChange={(e) => setLieu(e.target.value)} >
                 <option value="Présentiel">Présentiel</option>
                 <option value="À distance">À distance</option>
               </select>
             </div>
-            {/* <div>
-                <TextField
-                  required
-                  id={description}
-                  label="Event Description"
-                  defaultValue={description}
-                  variant="outlined"
-                  fullWidth
-                  margin="normal"
-                  onChange={e => this.setDescription(e.target.value)}
-                />
-              </div> */}
-
-
+            
        
         <div className="event-button" >
           <center >
-            <Button
+            <button
+            className="btn btn-outline-primary"
               type="submit"
               variant="contained"
-              color="primary"
-            // onClick={submitForm}
+            
             >
               Enregistrer
-            </Button>
-            <Button
+            </button>
+            <button
+            className="btn btn-outline-primary"
               variant="contained"
-              color="primary"
-              // onClick={this.submitForm}
               style={{ marginLeft: "20px" }}
             >
               supprimer
-            </Button>
+            </button>
           </center>
         </div>
       </form>
