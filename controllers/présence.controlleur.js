@@ -21,14 +21,11 @@ exports.addPresence = async (req, res) => {
   let userID = user.id;
   // console.log(userID);
   let {datePrésence, état, lieu } = req.body;
-  // let date1=req.body.datePrésence.split("-");
-  // let date10= (parseInt(date1[0]));
-  // let date11= (parseInt(date1[1]));
-  // let date12= (parseInt(date1[2]));
-  // let dattt=new Date(date10, date11 - 1, date12  ); 
-
-  // console.log(typeof datePrésence);
   
+  let isExist = await Présence.findOne({datePrésence});
+  if (isExist) {
+      res.status(400).json({ msg: "Pointage exist!" });
+  } else {
   
   try {
     let newPrésence = new Présence({
@@ -39,11 +36,16 @@ exports.addPresence = async (req, res) => {
       userId: userID
 
     });
+
+
+
+
     newPrésence.save();
     res.send(newPrésence)
   } catch (error) {
     res.status(500).json({ errors: error.message });
   }
+}
 };
 
 

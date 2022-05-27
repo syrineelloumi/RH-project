@@ -143,6 +143,7 @@ table {
 .nomDept{
     background-color: #e9ecef;
     font-style: italic;
+    border: none;
 }
 
 .bis{

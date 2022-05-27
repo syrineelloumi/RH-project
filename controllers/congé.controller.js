@@ -86,6 +86,7 @@ exports.getUserConges = async (req, res) => {
   let decoded = jwt.verify(token, secret);
   let user = await User.findById(decoded.id);
   let userID = user.id;
+  console.log(userID);
  
   
   try {

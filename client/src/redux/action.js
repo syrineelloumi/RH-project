@@ -102,6 +102,7 @@ export const userLogin = (user) => async (dispatch) => {
     });
     alert(error.response.data.msg);
     console.log(error.response.data.msg);
+    window.location.reload();
   }
   
 };

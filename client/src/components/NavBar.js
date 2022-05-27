@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logOut, UpdateMp } from '../redux/action';
+import { getAllConges, getAllUsers, logOut, UpdateMp } from '../redux/action';
 import Box from '@mui/material/Box';
 
 import Modal from '@mui/material/Modal';
@@ -9,18 +9,29 @@ import { margin, padding } from '@mui/system';
 import { useState } from 'react';
 import { EDIT_MP, EDIT_MP_FAIL, EDIT_MP_SUCCESS } from '../redux/actionTypes';
 import axios from 'axios';
+import { useEffect } from 'react';
 
 
 // import { Container } from './styles';
 
-function NavBar({ user }) {
+function NavBar() {
+
   const dispatch = useDispatch();
+  const {user}=useSelector((state)=>state);
   const handelSubmit = (e) => {
     e.preventDefault();
     dispatch(logOut());
     localStorage.removeItem("token");
 
   };
+  useEffect(() => {
+    dispatch(getAllUsers())
+    
+    dispatch(getAllConges())
+
+
+  }, [])
+  console.log({user});
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -91,11 +102,18 @@ function NavBar({ user }) {
 
             <li style={{marginLeft:"4px"}}>
               <Link to="/ddeConge" style={{ color: "black", textDecoration: " none" }} >Demande de congé</Link>
-            </li><br/>
-
-            <li style={{ marginTop: "-12px" , marginLeft:"4px"}}>
+            </li>
+            <li style={{ marginTop: "-1px" , marginLeft:"4px"}}>
               <Link style={{ color: "black", textDecoration: " none" }} to={"/HistoriqueConge"}>Historique Congé</Link>
             </li>
+
+            {
+              user.role === "Responsable"?( <li style={{ marginTop: "-1px" , marginLeft:"4px"}}>
+               <Link style={{ color: "black", textDecoration: " none" }} to={"/listConge"}>List des congés</Link>
+             </li>
+
+               ):(<></>)
+            }
 
           </ul>
 
@@ -106,7 +124,7 @@ function NavBar({ user }) {
         </Link>
         </li>
         <li className="item mx-auto"><Link to="index.html">
-          <i className="bi bi-card-heading" style={{ fontSize: "1rem", color: "black", top: "-6%" }}>Fiches</i>
+          <i class="bi bi-patch-plus" style={{ fontSize: "1rem", color: "black", top: "-6%" }}>Heures</i>
           {/* <p style={{ color: "black", fontSize: "12px" }}>Fiche de paie</p> */}
         </Link>
         </li>

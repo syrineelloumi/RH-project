@@ -17,7 +17,7 @@ import { deleteUser, getAllUsers, getDepartements, logOut, addDepart, getAllCong
 
 
 const UserList = () => {
-  const { usersList } = useSelector((state) => state);
+  const { usersList, departementsList } = useSelector((state) => state);
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getAllUsers())
@@ -57,7 +57,7 @@ const UserList = () => {
   return (
     <div>
       <nav className='navBarList'>
-        
+
         <div className="dropdown">
           <i className="bi bi-gear" style={{ fontSize: "1rem", color: "white", paddingLeft: "1280px", marginLeft: "200px" }} data-toggle="dropdown"></i>
 
@@ -92,35 +92,35 @@ const UserList = () => {
             </li>
           </ul>
         </div>
-        <l className="breadcrumb" style={{height:"2pc" , backgroundColor:"black"}}>
-        <li className="item mx-auto" style={{ top:"-95%"}}><Link to={"/newUser"}>
-          <i className="bi bi-plus-circle" style={{ fontSize: "1rem", color: "white" , top:"-12%"}}><p style={{fontSize:11}}>Nouveau Utilisateur</p></i>
-          
-        </Link>
-        </li>
-        <li className="item mx-auto" style={{top:"-95%"}}><Link to={"/listConge"}>
-          <i class="bi bi-list-check" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande Congé</p></i>
-          
-        </Link>
-        </li>
-        <li className="item mx-auto"  style={{top:"-95%"}}><Link to="/Cal">
-          <i class="bi bi-list-check" style={{ fontSize: "1rem", color: "white" , top:"-6%"}}><p style={{fontSize:11}}>Demande HS</p></i>
-         
-        </Link>
-        </li>
-        
-         
+        <l className="breadcrumb" style={{ height: "2pc", backgroundColor: "black" }}>
+          <li className="item mx-auto" style={{ top: "-95%" }}><Link to={"/newUser"}>
+            <i className="bi bi-plus-circle" style={{ fontSize: "1rem", color: "white", top: "-12%" }}><p style={{ fontSize: 11 }}>Nouveau Utilisateur</p></i>
 
-        {/* <Link className='new' to={"/newUser"}>
+          </Link>
+          </li>
+          <li className="item mx-auto" style={{ top: "-95%" }}><Link to={"/listConge"}>
+            <i class="bi bi-list-check" style={{ fontSize: "1rem", color: "white", top: "-6%" }}><p style={{ fontSize: 11 }}>Demande Congé</p></i>
+
+          </Link>
+          </li>
+          <li className="item mx-auto" style={{ top: "-95%" }}><Link to="">
+            <i class="bi bi-list-check" style={{ fontSize: "1rem", color: "white", top: "-6%" }}><p style={{ fontSize: 11 }}>Demande HS</p></i>
+
+          </Link>
+          </li>
+
+
+
+          {/* <Link className='new' to={"/newUser"}>
           <i className="bia bi-plus-circle" >Nouveau Utilisateur</i><br />
         </Link>
         <Link className='new' to={"/newUser"}>
           <i class="bia bi-card-checklist">Demande Congé </i><br/>
         </Link> */}
-        {/* <i className="bia bi-search"></i> */}
+          {/* <i className="bia bi-search"></i> */}
         </l>
       </nav>
-<div> <h2 > Liste des employés </h2></div>
+      <div> <h2 > Liste des employés </h2></div>
       <table>
         <tbody>
           <tr className='tabhead'>
@@ -133,16 +133,55 @@ const UserList = () => {
         </tbody>
       </table>
       <table>
-        <tbody>
-          <tr>
-            <th className='nomDept'>Informatique</th>
-          </tr>
-        </tbody>
+        
+        
+          
+          {departementsList.map(dep => <tbody>
+
+            <tr>
+              <th className='nomDept'></th>
+              <th className='nomDept'></th>
+              <th className='nomDept'>{dep.nomDépartment}</th>
+              <th className='nomDept'></th>
+              <th className='nomDept'></th>
+            </tr>
+            
+            
+            
+            {
+              usersList && usersList.filter(e => e.département === dep.nomDépartment).map((e, i) => <tr key={i}>
+
+                <td className='row1'>{e.nom}</td>
+                <td className='row1'>{e.prenom}</td>
+                <td className='row3'>{e.email}</td>
+                <td className='row1'>{e.numTel}</td>
+                <td className='row2'>
+
+                  <span className='span'>
+                    <Link to={`/editUser/${e._id}`}>
+                      <i className="bim bi-pencil-square" >Modifier</i>
+                    </Link>
+                  </span>
+
+                  <span className='span' onClick={() => {
+
+                    dispatch(deleteUser(e._id));
+                    dispatch(getAllUsers());
+                  }}><i className="bis bi-trash" >Supprimer</i
+                  ></span>
+                </td>
+              </tr> )
+            } 
+            </tbody>
+          
+          )}
+
+       
       </table>
       <table>
-        <tbody>
+        {/* <tbody> */}
 
-          {
+          {/* {
             usersList && usersList.filter(e => e.département === "Informatique").map((e, i) => <tr key={i}>
 
               <td className='row1'>{e.nom}</td>
@@ -165,20 +204,20 @@ const UserList = () => {
                 ></span>
               </td>
             </tr>)
-          }
-        </tbody>
+          } */}
+        {/* </tbody> */}
       </table>
       <table>
-        <tbody>
+        {/* <tbody>
           <tr>
             <th className='nomDept'>Marketing</th>
           </tr>
-        </tbody>
+        </tbody> */}
       </table>
       <table>
-        <tbody>
+        {/* <tbody> */}
 
-          {
+          {/* {
             usersList && usersList.filter(e => e.département === "Marketing").map((e, i) => <tr key={i}>
 
 
@@ -200,20 +239,20 @@ const UserList = () => {
                 ></span>
               </td>
             </tr>)
-          }
-        </tbody>
+          } */}
+        {/* </tbody> */}
       </table>
       <table>
-        <tbody>
+        {/* <tbody>
           <tr>
             <th className='nomDept'>RH</th>
           </tr>
-        </tbody>
+        </tbody> */}
       </table>
       <table>
-        <tbody>
+        {/* <tbody> */}
 
-          {
+          {/* {
             usersList && usersList.filter(e => e.département === "RH").map((e, i) => <tr key={i}>
 
 
@@ -235,8 +274,8 @@ const UserList = () => {
                 ></span>
               </td>
             </tr>)
-          }
-        </tbody>
+          } */}
+        {/* </tbody> */}
       </table>
 
     </div>

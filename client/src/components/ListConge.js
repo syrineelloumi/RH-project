@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 
 const ListConge = () => {
-    const { listDdeConge, usersList } = useSelector((state) => state);
+    const { listDdeConge, usersList, user } = useSelector((state) => state);
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getAllConges())
@@ -29,12 +29,18 @@ const ListConge = () => {
     return (
 
         <div className="table-wrapper">
-            <div>
+            {user.role==="Admin"? (<div>
                 <Link to={"/userList"}>
                     <i class="bi bi-arrow-left-short" style={{ marginRight: "90pc", fontSize: "2rem", color: "black" }}></i>
                 </Link>
                 <h2 style={{ marginTop: -30 }}>Demandes congés</h2>
-            </div>
+            </div>):( <div>
+                <Link to={"/profile"}>
+                    <i class="bi bi-arrow-left-short" style={{ marginRight: "90pc", fontSize: "2rem", color: "black" }}></i>
+                </Link>
+                <h2 style={{ marginTop: -30 }}>Demandes congés</h2>
+            </div>)}
+           
             <table className="fl-table">
                 <thead>
                     <tr>
@@ -42,7 +48,7 @@ const ListConge = () => {
                         <th>Date Début</th>
                         <th>Date Fin</th>
                         <th>Type</th>
-                        <th>Motif</th>
+                        <th>Justification</th>
                         <th>Etat</th>
                         <th></th>
                     </tr>
@@ -65,7 +71,7 @@ const ListConge = () => {
                             }</td>
                             
                             <td>
-                                <Modall conge={conge} />
+                                <Modall conge={conge}  user={user} />
 
                             </td>
                         </tr>

@@ -73,7 +73,7 @@ const Calendrier = () => {
 
         setSelectedDate(date);
         toggleModal()
-        // console.log(date);
+
     };
     while (day <= endDate) {
         for (let i = 0; i < 7; i++) {
@@ -122,18 +122,19 @@ const Calendrier = () => {
                             </div>
 
                             <div key={"add-event-" + day} className="add-event-button" >
+                                {listPointage.filter(e => isSameDay(cloneDay, new Date(e.datePrésence))).length === 0 && dayss[0] ?
+                                    (<Fab
+                                        // color="primary"
 
-                                <Fab
-                                    // color="primary"
+                                        size="small"
+                                        aria-label="add"
+                                        onClick={() => onAddEventClick(cloneDay)}
+                                        style={{ backgroundColor: "#c7cbd1", color: "black" }}
+                                    >
 
-                                    size="small"
-                                    aria-label="add"
-                                    onClick={() => onAddEventClick(cloneDay)}
-                                    style={{ backgroundColor: "#c7cbd1", color: "black" }}
-                                >
-
-                                    <AddIcon />
-                                </Fab>
+                                        <AddIcon />
+                                    </Fab>) : (<></>)
+                                }
                             </div>
                         </div>
                     ) : (
@@ -150,7 +151,7 @@ const Calendrier = () => {
         );
         dayss = [];
     }
-
+    console.log(rows);
     const toggleModal = () => {
         setShowEventModal(!showEventModal)
     };

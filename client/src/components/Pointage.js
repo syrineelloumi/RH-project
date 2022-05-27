@@ -120,6 +120,7 @@ const AddEventModal = ({ toggleModal, selectedDate }) => {
               
               <label >Lieu</label>
               <select type="text" className="form-control" name="lieu" placeholder="Entrer lieu " value={lieu} onChange={(e) => setLieu(e.target.value)} >
+              <option value=""></option>
                 <option value="Présentiel">Présentiel</option>
                 <option value="À distance">À distance</option>
               </select>
@@ -136,13 +137,7 @@ const AddEventModal = ({ toggleModal, selectedDate }) => {
             >
               Enregistrer
             </button>
-            <button
-            className="btn btn-outline-primary"
-              variant="contained"
-              style={{ marginLeft: "20px" }}
-            >
-              supprimer
-            </button>
+            
           </center>
         </div>
       </form>
