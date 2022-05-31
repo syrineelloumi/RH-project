@@ -347,13 +347,14 @@ export const addConge = (ddeConge) => async (dispatch) => {
       payload: res.data,
 
     });
-    alert("Envoi demande avec succès" )
+    alert("Demande envoyer avec succès" )
   }catch (error) {
   dispatch({
     type: ADD_CONGE_FAIL,
     payload: error.response.data,
   });
   alert(error.response.data.msg);
+  
   }
 }
 

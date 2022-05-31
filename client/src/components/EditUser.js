@@ -88,7 +88,7 @@ const EditUser = () => {
           <div className="nav-bar">
 
 
-            {user.role === "Employé" ? (
+            {user.role === "Employé" || user.role === "Responsable"? (
               <Link to={"/profile"}>
                 <i class="bi bi-arrow-left-short" style={{ marginRight: "75pc", fontSize: "2rem", color: "black" }}></i>
               </Link>

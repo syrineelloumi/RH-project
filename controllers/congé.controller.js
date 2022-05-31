@@ -10,11 +10,22 @@ exports.addConge = async (req, res) => {
   let decoded = jwt.verify(token, secret);
   let user = await User.findById(decoded.id);
   let userID = user.id;
+  let date=new Date();
+  console.log(typeof(date));
+
+
+ let na=Date.parse(date);
+
+ 
 
   let {dateDébut, dateFin, type ,motif } = req.body;
-  if(dateDébut>dateFin){
+  let nd=Date.parse(dateDébut)
+  if(dateDébut>dateFin ){
     res.status(400).json({ msg: "Date fin doit être supperieur à date début" });
+    
   }
+   if(nd < na){res.status(400).json({ msg: "date début doit être supperieur à date système" });}
+
   
   
   try {
@@ -92,7 +103,7 @@ exports.getUserConges = async (req, res) => {
   try {
 
     let theCongé = await Congé.find().sort({_id:-1})
-    let congés = theCongé.filter(e=>e.userId=userID)
+    let congés = theCongé.filter(e=>e.userId==userID)
     res.send(congés)
 }
 catch (err) {

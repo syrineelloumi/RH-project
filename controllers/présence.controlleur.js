@@ -116,7 +116,7 @@ exports.getPresences = async (req, res) => {
   try {
 
     let thePresences = await Présence.find()
-    let presences = thePresences.filter(e=>e.userId=userID)
+    let presences = thePresences.filter(e=>e.userId==userID)
     res.send(presences)
 }
 catch (err) {
